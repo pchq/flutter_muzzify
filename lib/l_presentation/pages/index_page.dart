@@ -19,17 +19,11 @@ class IndexPage extends StatelessWidget {
           currentIndex: tabsRouter.activeIndex,
           onTap: (index) {
             tabsRouter.setActiveIndex(index);
-            // final nestedStackRouter =
-            //     context.router.topMostRouter() as NestedStackRouter;
-
-            // nestedStackRouter.popUntilRoot();
           },
           items: const [
-            BottomNavigationBarItem(
-                label: 'артисты', icon: Icon(Icons.music_note)),
-            BottomNavigationBarItem(label: 'поиск', icon: Icon(Icons.search)),
-            BottomNavigationBarItem(
-                label: 'коллекции', icon: Icon(Icons.collections)),
+            BottomNavigationBarItem(label: 'Исполнители', icon: Icon(Icons.library_music)),
+            BottomNavigationBarItem(label: 'Поиск', icon: Icon(Icons.search)),
+            BottomNavigationBarItem(label: 'Коллекция', icon: Icon(Icons.favorite)),
           ],
         );
       },

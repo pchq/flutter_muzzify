@@ -25,8 +25,6 @@ class AuthGuard extends AutoRedirectGuard {
   void onNavigation(NavigationResolver resolver, StackRouter router) async {
     // the navigation is paused until resolver.next() is called with either
     // true to resume/continue navigation or false to abort navigation
-    print('== onNav isLogin: $isLogin');
-
     if (isLogin) {
       // if user is authenticated we continue
       resolver.next(true);
