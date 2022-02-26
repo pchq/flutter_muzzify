@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "618481990002",
+    "project_id": "skillbox-337219",
+    "storage_bucket": "skillbox-337219.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618481990002:android:e8b390843dddc17edcc5eb",
+        "android_client_info": {
+          "package_name": "com.example.muzzify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "618481990002-8tbga4va7v07q2aum9ag7bj0p2a6g1ak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0nIhTe-87F0qkWfaDsohRSeP51BlnEqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "618481990002-8tbga4va7v07q2aum9ag7bj0p2a6g1ak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
