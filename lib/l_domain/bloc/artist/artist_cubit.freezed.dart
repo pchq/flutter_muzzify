@@ -26,8 +26,14 @@ class _$ArtistStateTearOff {
     return const ArtistStateLoading();
   }
 
-  ArtistStateSuccess success(List<Artist> artists) {
-    return ArtistStateSuccess(
+  ArtistStateTopSuccess topSuccess(List<Artist> artists) {
+    return ArtistStateTopSuccess(
+      artists,
+    );
+  }
+
+  ArtistStateSearchSuccess searchSuccess(List<Artist> artists) {
+    return ArtistStateSearchSuccess(
       artists,
     );
   }
@@ -48,7 +54,8 @@ mixin _$ArtistState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Artist> artists) success,
+    required TResult Function(List<Artist> artists) topSuccess,
+    required TResult Function(List<Artist> artists) searchSuccess,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,7 +63,8 @@ mixin _$ArtistState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Artist> artists)? success,
+    TResult Function(List<Artist> artists)? topSuccess,
+    TResult Function(List<Artist> artists)? searchSuccess,
     TResult Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,7 +72,8 @@ mixin _$ArtistState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Artist> artists)? success,
+    TResult Function(List<Artist> artists)? topSuccess,
+    TResult Function(List<Artist> artists)? searchSuccess,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -73,7 +82,8 @@ mixin _$ArtistState {
   TResult map<TResult extends Object?>({
     required TResult Function(ArtistStateInitial value) initial,
     required TResult Function(ArtistStateLoading value) loading,
-    required TResult Function(ArtistStateSuccess value) success,
+    required TResult Function(ArtistStateTopSuccess value) topSuccess,
+    required TResult Function(ArtistStateSearchSuccess value) searchSuccess,
     required TResult Function(ArtistStateError value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -81,7 +91,8 @@ mixin _$ArtistState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ArtistStateInitial value)? initial,
     TResult Function(ArtistStateLoading value)? loading,
-    TResult Function(ArtistStateSuccess value)? success,
+    TResult Function(ArtistStateTopSuccess value)? topSuccess,
+    TResult Function(ArtistStateSearchSuccess value)? searchSuccess,
     TResult Function(ArtistStateError value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -89,7 +100,8 @@ mixin _$ArtistState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ArtistStateInitial value)? initial,
     TResult Function(ArtistStateLoading value)? loading,
-    TResult Function(ArtistStateSuccess value)? success,
+    TResult Function(ArtistStateTopSuccess value)? topSuccess,
+    TResult Function(ArtistStateSearchSuccess value)? searchSuccess,
     TResult Function(ArtistStateError value)? error,
     required TResult orElse(),
   }) =>
@@ -155,7 +167,8 @@ class _$ArtistStateInitial implements ArtistStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Artist> artists) success,
+    required TResult Function(List<Artist> artists) topSuccess,
+    required TResult Function(List<Artist> artists) searchSuccess,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -166,7 +179,8 @@ class _$ArtistStateInitial implements ArtistStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Artist> artists)? success,
+    TResult Function(List<Artist> artists)? topSuccess,
+    TResult Function(List<Artist> artists)? searchSuccess,
     TResult Function(String message)? error,
   }) {
     return initial?.call();
@@ -177,7 +191,8 @@ class _$ArtistStateInitial implements ArtistStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Artist> artists)? success,
+    TResult Function(List<Artist> artists)? topSuccess,
+    TResult Function(List<Artist> artists)? searchSuccess,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -192,7 +207,8 @@ class _$ArtistStateInitial implements ArtistStateInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(ArtistStateInitial value) initial,
     required TResult Function(ArtistStateLoading value) loading,
-    required TResult Function(ArtistStateSuccess value) success,
+    required TResult Function(ArtistStateTopSuccess value) topSuccess,
+    required TResult Function(ArtistStateSearchSuccess value) searchSuccess,
     required TResult Function(ArtistStateError value) error,
   }) {
     return initial(this);
@@ -203,7 +219,8 @@ class _$ArtistStateInitial implements ArtistStateInitial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ArtistStateInitial value)? initial,
     TResult Function(ArtistStateLoading value)? loading,
-    TResult Function(ArtistStateSuccess value)? success,
+    TResult Function(ArtistStateTopSuccess value)? topSuccess,
+    TResult Function(ArtistStateSearchSuccess value)? searchSuccess,
     TResult Function(ArtistStateError value)? error,
   }) {
     return initial?.call(this);
@@ -214,7 +231,8 @@ class _$ArtistStateInitial implements ArtistStateInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ArtistStateInitial value)? initial,
     TResult Function(ArtistStateLoading value)? loading,
-    TResult Function(ArtistStateSuccess value)? success,
+    TResult Function(ArtistStateTopSuccess value)? topSuccess,
+    TResult Function(ArtistStateSearchSuccess value)? searchSuccess,
     TResult Function(ArtistStateError value)? error,
     required TResult orElse(),
   }) {
@@ -272,7 +290,8 @@ class _$ArtistStateLoading implements ArtistStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Artist> artists) success,
+    required TResult Function(List<Artist> artists) topSuccess,
+    required TResult Function(List<Artist> artists) searchSuccess,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -283,7 +302,8 @@ class _$ArtistStateLoading implements ArtistStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Artist> artists)? success,
+    TResult Function(List<Artist> artists)? topSuccess,
+    TResult Function(List<Artist> artists)? searchSuccess,
     TResult Function(String message)? error,
   }) {
     return loading?.call();
@@ -294,7 +314,8 @@ class _$ArtistStateLoading implements ArtistStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Artist> artists)? success,
+    TResult Function(List<Artist> artists)? topSuccess,
+    TResult Function(List<Artist> artists)? searchSuccess,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -309,7 +330,8 @@ class _$ArtistStateLoading implements ArtistStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(ArtistStateInitial value) initial,
     required TResult Function(ArtistStateLoading value) loading,
-    required TResult Function(ArtistStateSuccess value) success,
+    required TResult Function(ArtistStateTopSuccess value) topSuccess,
+    required TResult Function(ArtistStateSearchSuccess value) searchSuccess,
     required TResult Function(ArtistStateError value) error,
   }) {
     return loading(this);
@@ -320,7 +342,8 @@ class _$ArtistStateLoading implements ArtistStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ArtistStateInitial value)? initial,
     TResult Function(ArtistStateLoading value)? loading,
-    TResult Function(ArtistStateSuccess value)? success,
+    TResult Function(ArtistStateTopSuccess value)? topSuccess,
+    TResult Function(ArtistStateSearchSuccess value)? searchSuccess,
     TResult Function(ArtistStateError value)? error,
   }) {
     return loading?.call(this);
@@ -331,7 +354,8 @@ class _$ArtistStateLoading implements ArtistStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ArtistStateInitial value)? initial,
     TResult Function(ArtistStateLoading value)? loading,
-    TResult Function(ArtistStateSuccess value)? success,
+    TResult Function(ArtistStateTopSuccess value)? topSuccess,
+    TResult Function(ArtistStateSearchSuccess value)? searchSuccess,
     TResult Function(ArtistStateError value)? error,
     required TResult orElse(),
   }) {
@@ -347,29 +371,29 @@ abstract class ArtistStateLoading implements ArtistState {
 }
 
 /// @nodoc
-abstract class $ArtistStateSuccessCopyWith<$Res> {
-  factory $ArtistStateSuccessCopyWith(
-          ArtistStateSuccess value, $Res Function(ArtistStateSuccess) then) =
-      _$ArtistStateSuccessCopyWithImpl<$Res>;
+abstract class $ArtistStateTopSuccessCopyWith<$Res> {
+  factory $ArtistStateTopSuccessCopyWith(ArtistStateTopSuccess value,
+          $Res Function(ArtistStateTopSuccess) then) =
+      _$ArtistStateTopSuccessCopyWithImpl<$Res>;
   $Res call({List<Artist> artists});
 }
 
 /// @nodoc
-class _$ArtistStateSuccessCopyWithImpl<$Res>
+class _$ArtistStateTopSuccessCopyWithImpl<$Res>
     extends _$ArtistStateCopyWithImpl<$Res>
-    implements $ArtistStateSuccessCopyWith<$Res> {
-  _$ArtistStateSuccessCopyWithImpl(
-      ArtistStateSuccess _value, $Res Function(ArtistStateSuccess) _then)
-      : super(_value, (v) => _then(v as ArtistStateSuccess));
+    implements $ArtistStateTopSuccessCopyWith<$Res> {
+  _$ArtistStateTopSuccessCopyWithImpl(
+      ArtistStateTopSuccess _value, $Res Function(ArtistStateTopSuccess) _then)
+      : super(_value, (v) => _then(v as ArtistStateTopSuccess));
 
   @override
-  ArtistStateSuccess get _value => super._value as ArtistStateSuccess;
+  ArtistStateTopSuccess get _value => super._value as ArtistStateTopSuccess;
 
   @override
   $Res call({
     Object? artists = freezed,
   }) {
-    return _then(ArtistStateSuccess(
+    return _then(ArtistStateTopSuccess(
       artists == freezed
           ? _value.artists
           : artists // ignore: cast_nullable_to_non_nullable
@@ -380,22 +404,22 @@ class _$ArtistStateSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ArtistStateSuccess implements ArtistStateSuccess {
-  const _$ArtistStateSuccess(this.artists);
+class _$ArtistStateTopSuccess implements ArtistStateTopSuccess {
+  const _$ArtistStateTopSuccess(this.artists);
 
   @override
   final List<Artist> artists;
 
   @override
   String toString() {
-    return 'ArtistState.success(artists: $artists)';
+    return 'ArtistState.topSuccess(artists: $artists)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is ArtistStateSuccess &&
+            other is ArtistStateTopSuccess &&
             const DeepCollectionEquality().equals(other.artists, artists));
   }
 
@@ -405,18 +429,20 @@ class _$ArtistStateSuccess implements ArtistStateSuccess {
 
   @JsonKey(ignore: true)
   @override
-  $ArtistStateSuccessCopyWith<ArtistStateSuccess> get copyWith =>
-      _$ArtistStateSuccessCopyWithImpl<ArtistStateSuccess>(this, _$identity);
+  $ArtistStateTopSuccessCopyWith<ArtistStateTopSuccess> get copyWith =>
+      _$ArtistStateTopSuccessCopyWithImpl<ArtistStateTopSuccess>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Artist> artists) success,
+    required TResult Function(List<Artist> artists) topSuccess,
+    required TResult Function(List<Artist> artists) searchSuccess,
     required TResult Function(String message) error,
   }) {
-    return success(artists);
+    return topSuccess(artists);
   }
 
   @override
@@ -424,10 +450,11 @@ class _$ArtistStateSuccess implements ArtistStateSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Artist> artists)? success,
+    TResult Function(List<Artist> artists)? topSuccess,
+    TResult Function(List<Artist> artists)? searchSuccess,
     TResult Function(String message)? error,
   }) {
-    return success?.call(artists);
+    return topSuccess?.call(artists);
   }
 
   @override
@@ -435,12 +462,13 @@ class _$ArtistStateSuccess implements ArtistStateSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Artist> artists)? success,
+    TResult Function(List<Artist> artists)? topSuccess,
+    TResult Function(List<Artist> artists)? searchSuccess,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(artists);
+    if (topSuccess != null) {
+      return topSuccess(artists);
     }
     return orElse();
   }
@@ -450,10 +478,11 @@ class _$ArtistStateSuccess implements ArtistStateSuccess {
   TResult map<TResult extends Object?>({
     required TResult Function(ArtistStateInitial value) initial,
     required TResult Function(ArtistStateLoading value) loading,
-    required TResult Function(ArtistStateSuccess value) success,
+    required TResult Function(ArtistStateTopSuccess value) topSuccess,
+    required TResult Function(ArtistStateSearchSuccess value) searchSuccess,
     required TResult Function(ArtistStateError value) error,
   }) {
-    return success(this);
+    return topSuccess(this);
   }
 
   @override
@@ -461,10 +490,11 @@ class _$ArtistStateSuccess implements ArtistStateSuccess {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ArtistStateInitial value)? initial,
     TResult Function(ArtistStateLoading value)? loading,
-    TResult Function(ArtistStateSuccess value)? success,
+    TResult Function(ArtistStateTopSuccess value)? topSuccess,
+    TResult Function(ArtistStateSearchSuccess value)? searchSuccess,
     TResult Function(ArtistStateError value)? error,
   }) {
-    return success?.call(this);
+    return topSuccess?.call(this);
   }
 
   @override
@@ -472,23 +502,180 @@ class _$ArtistStateSuccess implements ArtistStateSuccess {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ArtistStateInitial value)? initial,
     TResult Function(ArtistStateLoading value)? loading,
-    TResult Function(ArtistStateSuccess value)? success,
+    TResult Function(ArtistStateTopSuccess value)? topSuccess,
+    TResult Function(ArtistStateSearchSuccess value)? searchSuccess,
     TResult Function(ArtistStateError value)? error,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (topSuccess != null) {
+      return topSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class ArtistStateSuccess implements ArtistState {
-  const factory ArtistStateSuccess(List<Artist> artists) = _$ArtistStateSuccess;
+abstract class ArtistStateTopSuccess implements ArtistState {
+  const factory ArtistStateTopSuccess(List<Artist> artists) =
+      _$ArtistStateTopSuccess;
 
   List<Artist> get artists;
   @JsonKey(ignore: true)
-  $ArtistStateSuccessCopyWith<ArtistStateSuccess> get copyWith =>
+  $ArtistStateTopSuccessCopyWith<ArtistStateTopSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ArtistStateSearchSuccessCopyWith<$Res> {
+  factory $ArtistStateSearchSuccessCopyWith(ArtistStateSearchSuccess value,
+          $Res Function(ArtistStateSearchSuccess) then) =
+      _$ArtistStateSearchSuccessCopyWithImpl<$Res>;
+  $Res call({List<Artist> artists});
+}
+
+/// @nodoc
+class _$ArtistStateSearchSuccessCopyWithImpl<$Res>
+    extends _$ArtistStateCopyWithImpl<$Res>
+    implements $ArtistStateSearchSuccessCopyWith<$Res> {
+  _$ArtistStateSearchSuccessCopyWithImpl(ArtistStateSearchSuccess _value,
+      $Res Function(ArtistStateSearchSuccess) _then)
+      : super(_value, (v) => _then(v as ArtistStateSearchSuccess));
+
+  @override
+  ArtistStateSearchSuccess get _value =>
+      super._value as ArtistStateSearchSuccess;
+
+  @override
+  $Res call({
+    Object? artists = freezed,
+  }) {
+    return _then(ArtistStateSearchSuccess(
+      artists == freezed
+          ? _value.artists
+          : artists // ignore: cast_nullable_to_non_nullable
+              as List<Artist>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ArtistStateSearchSuccess implements ArtistStateSearchSuccess {
+  const _$ArtistStateSearchSuccess(this.artists);
+
+  @override
+  final List<Artist> artists;
+
+  @override
+  String toString() {
+    return 'ArtistState.searchSuccess(artists: $artists)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ArtistStateSearchSuccess &&
+            const DeepCollectionEquality().equals(other.artists, artists));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(artists));
+
+  @JsonKey(ignore: true)
+  @override
+  $ArtistStateSearchSuccessCopyWith<ArtistStateSearchSuccess> get copyWith =>
+      _$ArtistStateSearchSuccessCopyWithImpl<ArtistStateSearchSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<Artist> artists) topSuccess,
+    required TResult Function(List<Artist> artists) searchSuccess,
+    required TResult Function(String message) error,
+  }) {
+    return searchSuccess(artists);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Artist> artists)? topSuccess,
+    TResult Function(List<Artist> artists)? searchSuccess,
+    TResult Function(String message)? error,
+  }) {
+    return searchSuccess?.call(artists);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<Artist> artists)? topSuccess,
+    TResult Function(List<Artist> artists)? searchSuccess,
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    if (searchSuccess != null) {
+      return searchSuccess(artists);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ArtistStateInitial value) initial,
+    required TResult Function(ArtistStateLoading value) loading,
+    required TResult Function(ArtistStateTopSuccess value) topSuccess,
+    required TResult Function(ArtistStateSearchSuccess value) searchSuccess,
+    required TResult Function(ArtistStateError value) error,
+  }) {
+    return searchSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(ArtistStateInitial value)? initial,
+    TResult Function(ArtistStateLoading value)? loading,
+    TResult Function(ArtistStateTopSuccess value)? topSuccess,
+    TResult Function(ArtistStateSearchSuccess value)? searchSuccess,
+    TResult Function(ArtistStateError value)? error,
+  }) {
+    return searchSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ArtistStateInitial value)? initial,
+    TResult Function(ArtistStateLoading value)? loading,
+    TResult Function(ArtistStateTopSuccess value)? topSuccess,
+    TResult Function(ArtistStateSearchSuccess value)? searchSuccess,
+    TResult Function(ArtistStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (searchSuccess != null) {
+      return searchSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ArtistStateSearchSuccess implements ArtistState {
+  const factory ArtistStateSearchSuccess(List<Artist> artists) =
+      _$ArtistStateSearchSuccess;
+
+  List<Artist> get artists;
+  @JsonKey(ignore: true)
+  $ArtistStateSearchSuccessCopyWith<ArtistStateSearchSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -559,7 +746,8 @@ class _$ArtistStateError implements ArtistStateError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Artist> artists) success,
+    required TResult Function(List<Artist> artists) topSuccess,
+    required TResult Function(List<Artist> artists) searchSuccess,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -570,7 +758,8 @@ class _$ArtistStateError implements ArtistStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Artist> artists)? success,
+    TResult Function(List<Artist> artists)? topSuccess,
+    TResult Function(List<Artist> artists)? searchSuccess,
     TResult Function(String message)? error,
   }) {
     return error?.call(message);
@@ -581,7 +770,8 @@ class _$ArtistStateError implements ArtistStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Artist> artists)? success,
+    TResult Function(List<Artist> artists)? topSuccess,
+    TResult Function(List<Artist> artists)? searchSuccess,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -596,7 +786,8 @@ class _$ArtistStateError implements ArtistStateError {
   TResult map<TResult extends Object?>({
     required TResult Function(ArtistStateInitial value) initial,
     required TResult Function(ArtistStateLoading value) loading,
-    required TResult Function(ArtistStateSuccess value) success,
+    required TResult Function(ArtistStateTopSuccess value) topSuccess,
+    required TResult Function(ArtistStateSearchSuccess value) searchSuccess,
     required TResult Function(ArtistStateError value) error,
   }) {
     return error(this);
@@ -607,7 +798,8 @@ class _$ArtistStateError implements ArtistStateError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(ArtistStateInitial value)? initial,
     TResult Function(ArtistStateLoading value)? loading,
-    TResult Function(ArtistStateSuccess value)? success,
+    TResult Function(ArtistStateTopSuccess value)? topSuccess,
+    TResult Function(ArtistStateSearchSuccess value)? searchSuccess,
     TResult Function(ArtistStateError value)? error,
   }) {
     return error?.call(this);
@@ -618,7 +810,8 @@ class _$ArtistStateError implements ArtistStateError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ArtistStateInitial value)? initial,
     TResult Function(ArtistStateLoading value)? loading,
-    TResult Function(ArtistStateSuccess value)? success,
+    TResult Function(ArtistStateTopSuccess value)? topSuccess,
+    TResult Function(ArtistStateSearchSuccess value)? searchSuccess,
     TResult Function(ArtistStateError value)? error,
     required TResult orElse(),
   }) {

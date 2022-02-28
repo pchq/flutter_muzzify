@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:muzzify/models/artist.dart';
-
-import '../widgets/lists/artists_list.dart';
-import '../widgets/loaders/loading_indicator.dart';
-import '/l_domain/bloc/artists/artist_cubit.dart';
+import '/models/artist.dart';
+import '/l_presentation/widgets/lists/artists_list.dart';
+import '/l_presentation/widgets/loaders/loading_indicator.dart';
+import '/l_domain/bloc/artist/artist_cubit.dart';
 
 class ArtistsPage extends StatefulWidget {
   const ArtistsPage({Key? key}) : super(key: key);
@@ -17,7 +16,7 @@ class _ArtistsPageState extends State<ArtistsPage> {
   bool _isLoading = true;
   final ScrollController _scrollCtrl = ScrollController();
   final List<Artist> _artists = [];
-  late final _bloc = context.watch<ArtistCubit>();
+  late final _bloc = context.read<ArtistCubit>();
 
   @override
   void initState() {
@@ -40,14 +39,14 @@ class _ArtistsPageState extends State<ArtistsPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<ArtistCubit, ArtistState>(
       builder: (context, state) {
-        state.when(
+        state.whenOrNull(
           initial: () {
             _bloc.loadTop();
           },
           loading: () {
             _isLoading = true;
           },
-          success: (items) {
+          topSuccess: (items) {
             _artists.addAll(items);
             _isLoading = false;
           },

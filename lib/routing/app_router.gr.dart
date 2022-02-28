@@ -42,16 +42,14 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: const ArtistsPage());
     },
     ArtistRoute.name: (routeData) {
+      final args = routeData.argsAs<ArtistRouteArgs>();
       return AdaptivePage<dynamic>(
-          routeData: routeData, child: const ArtistPage());
+          routeData: routeData,
+          child: ArtistPage(key: args.key, artist: args.artist));
     },
     AuthRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const AuthPage());
-    },
-    ProfileRoute.name: (routeData) {
-      return AdaptivePage<dynamic>(
-          routeData: routeData, child: const ProfilePage());
     },
     SearchRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
@@ -75,11 +73,7 @@ class _$AppRouter extends RootStackRouter {
                 RouteConfig(ArtistRoute.name,
                     path: 'artist-page', parent: ArtistsTab.name),
                 RouteConfig(AuthRoute.name,
-                    path: 'auth-page', parent: ArtistsTab.name),
-                RouteConfig(ProfileRoute.name,
-                    path: 'profile-page',
-                    parent: ArtistsTab.name,
-                    guards: [authGuard])
+                    path: 'auth-page', parent: ArtistsTab.name)
               ]),
           RouteConfig(SearchTab.name,
               path: 'empty-router-page',
@@ -89,11 +83,7 @@ class _$AppRouter extends RootStackRouter {
                 RouteConfig(ArtistRoute.name,
                     path: 'artist-page', parent: SearchTab.name),
                 RouteConfig(AuthRoute.name,
-                    path: 'auth-page', parent: SearchTab.name),
-                RouteConfig(ProfileRoute.name,
-                    path: 'profile-page',
-                    parent: SearchTab.name,
-                    guards: [authGuard])
+                    path: 'auth-page', parent: SearchTab.name)
               ]),
           RouteConfig(CollectionTab.name,
               path: 'empty-router-page',
@@ -102,11 +92,7 @@ class _$AppRouter extends RootStackRouter {
                 RouteConfig(CollectionRoute.name,
                     path: '', parent: CollectionTab.name, guards: [authGuard]),
                 RouteConfig(AuthRoute.name,
-                    path: 'auth-page', parent: CollectionTab.name),
-                RouteConfig(ProfileRoute.name,
-                    path: 'profile-page',
-                    parent: CollectionTab.name,
-                    guards: [authGuard])
+                    path: 'auth-page', parent: CollectionTab.name)
               ])
         ])
       ];
@@ -161,10 +147,26 @@ class ArtistsRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ArtistPage]
-class ArtistRoute extends PageRouteInfo<void> {
-  const ArtistRoute() : super(ArtistRoute.name, path: 'artist-page');
+class ArtistRoute extends PageRouteInfo<ArtistRouteArgs> {
+  ArtistRoute({Key? key, required Artist artist})
+      : super(ArtistRoute.name,
+            path: 'artist-page',
+            args: ArtistRouteArgs(key: key, artist: artist));
 
   static const String name = 'ArtistRoute';
+}
+
+class ArtistRouteArgs {
+  const ArtistRouteArgs({this.key, required this.artist});
+
+  final Key? key;
+
+  final Artist artist;
+
+  @override
+  String toString() {
+    return 'ArtistRouteArgs{key: $key, artist: $artist}';
+  }
 }
 
 /// generated route for
@@ -173,14 +175,6 @@ class AuthRoute extends PageRouteInfo<void> {
   const AuthRoute() : super(AuthRoute.name, path: 'auth-page');
 
   static const String name = 'AuthRoute';
-}
-
-/// generated route for
-/// [ProfilePage]
-class ProfileRoute extends PageRouteInfo<void> {
-  const ProfileRoute() : super(ProfileRoute.name, path: 'profile-page');
-
-  static const String name = 'ProfileRoute';
 }
 
 /// generated route for

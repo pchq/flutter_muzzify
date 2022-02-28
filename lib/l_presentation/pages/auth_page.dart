@@ -1,79 +1,92 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muzzify/l_presentation/widgets/loaders/loading_indicator.dart';
+import '/routing/app_router.dart';
 
 import '/l_domain/bloc/auth/auth_cubit.dart';
 
-class AuthPage extends StatelessWidget {
+class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
 
-  static final _emailFieldController = TextEditingController();
-  static final _passwdFieldController = TextEditingController();
+  @override
+  State<AuthPage> createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> {
+  final _emailFieldController = TextEditingController();
+  final _passwdFieldController = TextEditingController();
+  late final _authBloc = context.watch<AuthCubit>();
+
+  @override
+  void dispose() {
+    _emailFieldController.dispose();
+    _passwdFieldController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final authBloc = context.watch<AuthCubit>();
-    final authBlocState = authBloc.state;
-    final isRegistration = authBloc.isRegistration;
+    final isRegistration = _authBloc.isRegistration;
 
-    if (authBlocState is AuthStateSuccess) {
-      AutoRouter.of(context).replaceNamed('/');
-      _emailFieldController.dispose();
-      _passwdFieldController.dispose();
-    }
-
-    final enableControls = authBlocState is! AuthStateLoading &&
-        authBlocState is! AuthStateSuccess;
-
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(25),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Spacer(flex: 2),
-            const Text('todo: img'),
-            const Text('Muzzify'),
-            _InputField(
-              controller: _emailFieldController,
-              enabled: enableControls,
-              label: 'E-mail',
+    return BlocBuilder<AuthCubit, AuthState>(
+      builder: (context, state) {
+        final enableControls = state is! AuthStateLoading;
+        if (state is AuthStateSuccess) {
+          AutoRouter.of(context).replace(CollectionRoute());
+        }
+        return Scaffold(
+          body: Padding(
+            padding: const EdgeInsets.all(25),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Spacer(flex: 2),
+                const Text('Необходимо авторизоваться'),
+                _InputField(
+                  controller: _emailFieldController,
+                  enabled: enableControls,
+                  label: 'E-mail',
+                ),
+                _InputField(
+                  controller: _passwdFieldController,
+                  enabled: enableControls,
+                  label: 'Пароль',
+                  isPasswd: true,
+                ),
+                state is AuthStateLoading
+                    ? Container(
+                        padding: const EdgeInsets.all(10),
+                        height: 50,
+                        width: 50,
+                        child: const Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                          ),
+                        ),
+                      )
+                    : enableControls
+                        ? ElevatedButton(
+                            onPressed: () {
+                              _authBloc.login(
+                                _emailFieldController.text,
+                                _passwdFieldController.text,
+                              );
+                            },
+                            child: Text(isRegistration ? 'Регистрация' : 'Войти'),
+                          )
+                        : LoadingIndicator(),
+                const Spacer(flex: 3),
+                _BottomAuthToggle(
+                  enabled: enableControls,
+                  isRegistration: isRegistration,
+                  onPressed: _authBloc.toggleAuthType,
+                ),
+              ],
             ),
-            _InputField(
-              controller: _passwdFieldController,
-              enabled: enableControls,
-              label: 'Пароль',
-              isPasswd: true,
-            ),
-            authBlocState is AuthStateLoading
-                ? Container(
-                    padding: const EdgeInsets.all(10),
-                    height: 50,
-                    width: 50,
-                    child: const Center(
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                      ),
-                    ),
-                  )
-                : ElevatedButton(
-                    onPressed: () {
-                      authBloc.login(
-                        _emailFieldController.text,
-                        _passwdFieldController.text,
-                      );
-                    },
-                    child: Text(isRegistration ? 'Регистрация' : 'Войти'),
-                  ),
-            const Spacer(flex: 3),
-            _BottomAuthToggle(
-              enabled: enableControls,
-              isRegistration: isRegistration,
-              onPressed: authBloc.toggleAuthType,
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
@@ -122,8 +135,7 @@ class _BottomAuthToggle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final void Function()? _onPressed =
-        enabled ? () => onPressed(!isRegistration) : null;
+    final void Function()? _onPressed = enabled ? () => onPressed(!isRegistration) : null;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

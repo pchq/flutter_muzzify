@@ -6,7 +6,9 @@ import '/l_presentation/pages/artists_page.dart';
 import '/l_presentation/pages/collection_page.dart';
 import '/l_presentation/pages/auth_page.dart';
 import '/l_presentation/pages/index_page.dart';
-import '/l_presentation/pages/profile_page.dart';
+// import '/l_presentation/pages/profile_page.dart';
+
+import '/models/artist.dart';
 
 import 'auth_guard.dart';
 
@@ -69,8 +71,8 @@ class AppRouter extends _$AppRouter {
 
 const _nestedRoutes = [
   AutoRoute(page: AuthPage),
-  AutoRoute(
-    page: ProfilePage,
-    guards: [AuthGuard],
-  ),
+  // AutoRoute(
+  //   page: ProfilePage,
+  //   guards: [AuthGuard],
+  // ),
 ];

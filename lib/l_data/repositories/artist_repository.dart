@@ -16,8 +16,8 @@ class ArtistRepository implements IArtistRepository {
     int page = 0,
   }) async {
     try {
-      final remote = remoteDatasource.loadTopArtists(limit, page);
-      return remote;
+      final remoteData = remoteDatasource.loadTopArtists(limit, page);
+      return remoteData;
     } catch (e) {
       print('err: $e');
       throw Exception();
@@ -29,8 +29,13 @@ class ArtistRepository implements IArtistRepository {
     String query, {
     int limit = AppConfig.pagenArtists,
     int page = 0,
-  }) {
-    // TODO: implement search
-    throw UnimplementedError();
+  }) async {
+    try {
+      final remoteData = remoteDatasource.searchArtists(query, limit, page);
+      return remoteData;
+    } catch (e) {
+      print('err: $e');
+      throw Exception();
+    }
   }
 }

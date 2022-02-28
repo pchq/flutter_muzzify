@@ -14,18 +14,43 @@ class ArtistCubit extends Cubit<ArtistState> {
 
   int topArtistsPage = 0;
   bool topArtistsLoadedAll = false;
-
   void loadTop() async {
     if (state is ArtistStateLoading) return;
 
     try {
       emit(ArtistStateLoading());
       final artists = await artistRepository.loadTop(page: topArtistsPage);
-      emit(ArtistStateSuccess(artists));
+      emit(ArtistStateTopSuccess(artists));
       if (artists.isNotEmpty) {
         topArtistsPage++;
       } else {
         topArtistsLoadedAll = true;
+      }
+    } catch (e) {
+      emit(ArtistStateError(e.toString()));
+    }
+  }
+
+  int searchPage = 0;
+  bool searchLoadedAll = false;
+  String searchQuery = '';
+  void search(String query) async {
+    if (state is ArtistStateLoading) return;
+
+    if (query != searchQuery) {
+      searchPage = 0;
+      searchLoadedAll = false;
+    }
+    searchQuery = query;
+
+    try {
+      emit(ArtistStateLoading());
+      final artists = await artistRepository.search(searchQuery, page: searchPage);
+      emit(ArtistStateSearchSuccess(artists));
+      if (artists.isNotEmpty) {
+        searchPage++;
+      } else {
+        searchLoadedAll = true;
       }
     } catch (e) {
       emit(ArtistStateError(e.toString()));

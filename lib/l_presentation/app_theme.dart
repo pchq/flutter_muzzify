@@ -13,6 +13,7 @@ class AppTheme {
   static final ThemeData theme = _baseTheme.copyWith(
     primaryColor: AppTheme.colorFirm,
     colorScheme: ColorScheme.fromSwatch().copyWith(
+      primary: AppTheme.colorFirm,
       secondary: AppTheme.colorFirm,
     ),
     backgroundColor: AppTheme.colorBlackMatte,
