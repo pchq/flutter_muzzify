@@ -1,14 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:muzzify/l_domain/bloc/artists/artist_cubit.dart';
-import 'l_domain/repositories/i_artist_repository.dart';
-import 'l_presentation/app_theme.dart';
-import 'l_domain/bloc/auth/auth_cubit.dart';
-import 'l_domain/repositories/i_auth_repository.dart';
 
-import 'core/service_provider.dart';
-import 'routing/app_router.dart';
+import '/l_domain/bloc/artist/artist_cubit.dart';
+import '/l_domain/repositories/i_artist_repository.dart';
+import '/l_domain/bloc/auth/auth_cubit.dart';
+import '/l_domain/repositories/i_auth_repository.dart';
+import '/l_presentation/app_theme.dart';
+
+import '/core/service_provider.dart';
+import '/routing/app_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
