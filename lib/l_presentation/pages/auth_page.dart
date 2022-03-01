@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:muzzify/l_presentation/widgets/loaders/loading_indicator.dart';
+import '/l_presentation/widgets/loading_indicator.dart';
 import '/routing/app_router.dart';
 
 import '/l_domain/bloc/auth/auth_cubit.dart';

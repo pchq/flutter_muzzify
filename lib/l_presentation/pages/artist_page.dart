@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import '/l_presentation/widgets/lists/tracks_list.dart';
 import '/l_presentation/app_theme.dart';
 import '/models/artist.dart';
 
@@ -79,53 +80,11 @@ class ArtistPage extends StatelessWidget {
                   ),
                 },
               ),
-
-              // Text(
-              //   '${artist.bio}',
-              //   style: TextStyle(
-              //     fontSize: 16,
-              //     height: 1.5,
-              //     color: AppTheme.colorGreyMiddle,
-              //   ),
-              // ),
             ),
           ),
-          // SliverList(
-          //   delegate: SliverChildBuilderDelegate(
-          //     (context, index) {
-          //       Track track = _tracks[index];
-          //       return TrackView(track);
-          //     },
-          //     childCount: _tracks.length,
-          //   ),
-          // ),
-          // if (_showTracksLoadBtn)
-          //   SliverToBoxAdapter(
-          //     child: Center(
-          //       child: Container(
-          //         margin: EdgeInsets.only(top: 20, bottom: 20),
-          //         child: MaterialButton(
-          //           onPressed: loadTracks,
-          //           child: Text(
-          //             'Загрузить еще',
-          //             style: TextStyle(
-          //               fontSize: 15,
-          //             ),
-          //           ),
-          //           shape: RoundedRectangleBorder(
-          //             borderRadius: BorderRadius.circular(30.0),
-          //           ),
-          //           color: Config.colorFirm,
-          //           height: 50,
-          //           minWidth: 160,
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // if (_isTracksLoading)
-          //   SliverToBoxAdapter(
-          //     child: LoadingIndicator(),
-          //   ),
+          SliverToBoxAdapter(
+            child: TracksList(artistId: artist.id),
+          ),
         ],
       ),
     );

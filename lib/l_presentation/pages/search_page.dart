@@ -4,7 +4,7 @@ import '/models/artist.dart';
 import '/l_domain/bloc/artist/artist_cubit.dart';
 import '/l_presentation/widgets/lists/artists_list.dart';
 import '/l_presentation/widgets/form/search_field.dart';
-import '/l_presentation/widgets/loaders/loading_indicator.dart';
+import '/l_presentation/widgets/loading_indicator.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);

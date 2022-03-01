@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:muzzify/l_data/repositories/track_repository.dart';
 import 'package:muzzify/l_domain/repositories/i_artist_repository.dart';
+import 'package:muzzify/l_domain/repositories/i_track_repository.dart';
 import '../l_data/datasources/remote_datasource.dart';
 import '../l_data/repositories/artist_repository.dart';
 import '/l_data/repositories/auth_repository.dart';
@@ -29,9 +31,6 @@ class ServiceProvider {
     _getIt.registerLazySingleton<IAuthRepository>(
       () => AuthRepository(firebaseAuth: _getIt()),
     );
-    _getIt.registerLazySingleton<FirebaseAuth>(
-      () => FirebaseAuth.instance,
-    );
 
     // artists
     _getIt.registerLazySingleton<IArtistRepository>(
@@ -40,7 +39,15 @@ class ServiceProvider {
     _getIt.registerLazySingleton<RemoteDatasource>(
       () => RemoteDatasource(dio: _getIt()),
     );
+    // tracks
+    _getIt.registerLazySingleton<ITrackRepository>(
+      () => TrackRepository(remoteDatasource: _getIt()),
+    );
 
+    // services
+    _getIt.registerLazySingleton<FirebaseAuth>(
+      () => FirebaseAuth.instance,
+    );
     _getIt.registerLazySingleton<Dio>(
       () => Dio(),
     );
