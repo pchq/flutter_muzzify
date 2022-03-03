@@ -1,13 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
-import 'package:muzzify/l_data/repositories/track_repository.dart';
-import 'package:muzzify/l_domain/repositories/i_artist_repository.dart';
-import 'package:muzzify/l_domain/repositories/i_track_repository.dart';
-import '../l_data/datasources/remote_datasource.dart';
-import '../l_data/repositories/artist_repository.dart';
+import '/l_data/datasources/remote_datasource.dart';
+import '/l_data/repositories/track_repository.dart';
+import '/l_data/repositories/artist_repository.dart';
+import '/l_data/repositories/collection_repository.dart';
 import '/l_data/repositories/auth_repository.dart';
+import '/l_domain/repositories/i_track_repository.dart';
+import '/l_domain/repositories/i_artist_repository.dart';
 import '/l_domain/repositories/i_auth_repository.dart';
+import '/l_domain/repositories/i_collection_repository.dart';
 import '/routing/app_router.dart';
 import '/routing/auth_guard.dart';
 
@@ -42,6 +44,11 @@ class ServiceProvider {
     // tracks
     _getIt.registerLazySingleton<ITrackRepository>(
       () => TrackRepository(remoteDatasource: _getIt()),
+    );
+
+    //collection
+    _getIt.registerLazySingleton<ICollectionRepository>(
+      () => CollectionRepository(firebaseAuth: _getIt()),
     );
 
     // services

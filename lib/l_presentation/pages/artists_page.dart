@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '/models/artist.dart';
 import '/l_presentation/widgets/lists/artists_list.dart';
-import '/l_presentation/widgets/loaders/loading_indicator.dart';
+import '/l_presentation/widgets/loading_indicator.dart';
 import '/l_domain/bloc/artist/artist_cubit.dart';
 
 class ArtistsPage extends StatefulWidget {

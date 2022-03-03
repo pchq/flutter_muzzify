@@ -54,7 +54,7 @@ class _TracksListState extends State<TracksList> {
             ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (_, index) => TrackCard(track: _tracks[index]),
+              itemBuilder: (_, index) => TrackCard(_tracks[index]),
               itemCount: _tracks.length,
             ),
             if (!_isLoading && !_bloc.loadedAll)

@@ -4,7 +4,8 @@ import '/l_domain/repositories/i_auth_repository.dart';
 
 class AuthRepository implements IAuthRepository {
   final FirebaseAuth firebaseAuth;
-  AuthRepository({
+
+  const AuthRepository({
     required this.firebaseAuth,
   });
 
@@ -31,8 +32,7 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<String?> login(String email, String password) async {
     try {
-      var result = await firebaseAuth.signInWithEmailAndPassword(
-          email: email, password: password);
+      var result = await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
       return result.user?.uid;
     } on FirebaseAuthException {
       rethrow;
@@ -45,8 +45,8 @@ class AuthRepository implements IAuthRepository {
   @override
   Future<String?> register(String email, String password) async {
     try {
-      var result = await firebaseAuth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      var result =
+          await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       return result.user?.uid;
     } on FirebaseAuthException {
       rethrow;

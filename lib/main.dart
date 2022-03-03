@@ -1,13 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '/l_domain/bloc/collection/collection_cubit.dart';
 import '/l_domain/bloc/artist/artist_cubit.dart';
 import '/l_domain/bloc/auth/auth_cubit.dart';
 import '/l_domain/bloc/track/track_cubit.dart';
 import '/l_domain/repositories/i_artist_repository.dart';
 import '/l_domain/repositories/i_auth_repository.dart';
 import '/l_domain/repositories/i_track_repository.dart';
+import '/l_domain/repositories/i_collection_repository.dart';
 import '/l_presentation/app_theme.dart';
 import '/core/service_provider.dart';
 import '/routing/app_router.dart';
@@ -40,6 +41,11 @@ class MyApp extends StatelessWidget {
         BlocProvider<TrackCubit>(
           create: (BuildContext context) => TrackCubit(
             trackRepository: _serviceProvider.get<ITrackRepository>(),
+          ),
+        ),
+        BlocProvider<CollectionCubit>(
+          create: (BuildContext context) => CollectionCubit(
+            collectionRepository: _serviceProvider.get<ICollectionRepository>(),
           ),
         ),
       ],
