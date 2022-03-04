@@ -14,6 +14,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   bool _isLoading = false;
+  bool _notFound = false;
   final ScrollController _scrollCtrl = ScrollController();
   final TextEditingController _searchCtrl = TextEditingController();
   final List<Artist> _artists = [];
@@ -66,6 +67,7 @@ class _SearchPageState extends State<SearchPage> {
           searchSuccess: (items) {
             _artists.addAll(items);
             _isLoading = false;
+            _notFound = (_artists.isEmpty && _searchCtrl.text.isNotEmpty);
           },
           error: (error) {
             _isLoading = false;
@@ -89,6 +91,11 @@ class _SearchPageState extends State<SearchPage> {
                 if (_artists.isNotEmpty)
                   ArtistsList(
                     list: _artists,
+                  ),
+                if (_notFound && !_isLoading)
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    child: Text('Ничего не найдено'),
                   ),
                 if (_isLoading) LoadingIndicator(),
               ],

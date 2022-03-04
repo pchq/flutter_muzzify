@@ -1,5 +1,4 @@
-import 'package:muzzify/core/app_config.dart';
-
+import '/core/app_config.dart';
 import '/models/artist.dart';
 
 abstract class IArtistRepository {

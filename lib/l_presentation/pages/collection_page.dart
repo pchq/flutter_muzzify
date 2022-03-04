@@ -2,11 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:muzzify/l_presentation/app_theme.dart';
 import '/l_domain/bloc/collection/collection_cubit.dart';
+import '/l_presentation/widgets/profile_drawer.dart';
 import '/l_presentation/widgets/lists/collection_list.dart';
 import '/l_presentation/widgets/loading_indicator.dart';
-import '/l_domain/bloc/auth/auth_cubit.dart';
 import '/models/track.dart';
 
 class CollectionPage extends StatefulWidget {
@@ -31,34 +30,8 @@ class _CollectionPageState extends State<CollectionPage> {
 
   @override
   Widget build(BuildContext context) {
-    // final authBloc = context.watch<AuthCubit>();
-
     return Scaffold(
-      drawer: Drawer(
-        child: Column(
-          children: [
-            SizedBox(height: 50),
-            CircleAvatar(
-              child: Icon(
-                Icons.person_rounded,
-                color: AppTheme.colorBrightWhite,
-                size: 48,
-              ),
-              radius: 50,
-              backgroundColor: AppTheme.colorFirm,
-            ),
-            SizedBox(height: 20),
-            Text('hasdghsagd#@uatsd.ru'),
-            Spacer(),
-            MaterialButton(
-              onPressed: () {},
-              color: AppTheme.colorGreyMiddle,
-              child: Text('Exit'),
-            ),
-            SizedBox(height: 20),
-          ],
-        ),
-      ),
+      drawer: ProfileDrawer(),
       drawerEnableOpenDragGesture: false,
       appBar: AppBar(
         title: Text('Коллекция'),

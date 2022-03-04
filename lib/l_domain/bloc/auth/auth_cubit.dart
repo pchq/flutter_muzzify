@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '/l_domain/repositories/i_auth_repository.dart';
@@ -40,4 +41,6 @@ class AuthCubit extends Cubit<AuthState> {
     this.isRegistration = isRegistration;
     emit(AuthStateInitial(isRegistration));
   }
+
+  User get user => authRepository.user;
 }

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:muzzify/models/track.dart';
 
+import '/models/track.dart';
 import '/models/artist.dart';
 import '/core/app_config.dart';
 
@@ -30,6 +30,7 @@ class RemoteDatasource {
   }
 
   Future<List<Artist>> searchArtists(String query, int limit, int page) async {
+    if (query.isEmpty) return [];
     try {
       final response = await dio.get(
         'https://api.napster.com/v2.2/search?query=$query&type=artist&per_type_limit=$limit&offset=${page * limit}&apikey=${AppConfig.napsterApiKey}',

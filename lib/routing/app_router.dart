@@ -6,7 +6,6 @@ import '/l_presentation/pages/artists_page.dart';
 import '/l_presentation/pages/collection_page.dart';
 import '/l_presentation/pages/auth_page.dart';
 import '/l_presentation/pages/index_page.dart';
-// import '/l_presentation/pages/profile_page.dart';
 
 import '/models/artist.dart';
 
@@ -32,7 +31,6 @@ part 'app_router.gr.dart';
             AutoRoute(
               page: ArtistPage,
             ),
-            ..._nestedRoutes,
           ],
         ),
         AutoRoute(
@@ -46,7 +44,6 @@ part 'app_router.gr.dart';
             AutoRoute(
               page: ArtistPage,
             ),
-            ..._nestedRoutes,
           ],
         ),
         AutoRoute(
@@ -58,7 +55,7 @@ part 'app_router.gr.dart';
               page: CollectionPage,
               guards: [AuthGuard],
             ),
-            ..._nestedRoutes,
+            AutoRoute(page: AuthPage),
           ],
         ),
       ],
@@ -68,11 +65,3 @@ part 'app_router.gr.dart';
 class AppRouter extends _$AppRouter {
   AppRouter({required AuthGuard authGuard}) : super(authGuard: authGuard);
 }
-
-const _nestedRoutes = [
-  AutoRoute(page: AuthPage),
-  // AutoRoute(
-  //   page: ProfilePage,
-  //   guards: [AuthGuard],
-  // ),
-];

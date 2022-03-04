@@ -15,6 +15,15 @@ class AuthRepository implements IAuthRepository {
   }
 
   @override
+  User get user {
+    if (firebaseAuth.currentUser == null) {
+      throw Exception();
+    } else {
+      return firebaseAuth.currentUser!;
+    }
+  }
+
+  @override
   Stream<bool> listenLogin() async* {
     bool isLogin;
 

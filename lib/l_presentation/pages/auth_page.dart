@@ -42,7 +42,11 @@ class _AuthPageState extends State<AuthPage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Spacer(flex: 2),
-                const Text('Необходимо авторизоваться'),
+                const Text(
+                  'Необходимо авторизоваться',
+                  style: TextStyle(fontSize: 16),
+                ),
+                SizedBox(height: 20),
                 _InputField(
                   controller: _emailFieldController,
                   enabled: enableControls,
@@ -54,6 +58,7 @@ class _AuthPageState extends State<AuthPage> {
                   label: 'Пароль',
                   isPasswd: true,
                 ),
+                SizedBox(height: 20),
                 state is AuthStateLoading
                     ? Container(
                         padding: const EdgeInsets.all(10),

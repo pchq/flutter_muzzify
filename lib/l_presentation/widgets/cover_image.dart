@@ -4,10 +4,12 @@ import '/l_presentation/app_theme.dart';
 
 class CoverImage extends StatelessWidget {
   final String imgPath;
+  final Widget? errorChild;
 
   const CoverImage(
     this.imgPath, {
     Key? key,
+    this.errorChild,
   }) : super(key: key);
 
   @override
@@ -20,9 +22,7 @@ class CoverImage extends StatelessWidget {
       errorBuilder: (context, error, stackTrace) {
         return Container(
           color: AppTheme.colorGreyMiddle,
-          child: Center(
-            child: Icon(Icons.music_note_outlined),
-          ),
+          child: errorChild,
         );
       },
     );

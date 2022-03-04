@@ -47,6 +47,9 @@ class TrackCard extends StatelessWidget {
               child: CoverImage(
                 // ToDo:
                 'https://api.napster.com/imageserver/v2/albums/${track.albumId}/images/70x70.jpg',
+                errorChild: Center(
+                  child: Icon(Icons.music_note_outlined),
+                ),
               ),
             ),
             Expanded(

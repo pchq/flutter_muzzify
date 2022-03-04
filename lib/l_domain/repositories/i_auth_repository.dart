@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 abstract class IAuthRepository {
   bool isLogin();
 
@@ -8,4 +10,6 @@ abstract class IAuthRepository {
   Future<String?> register(String email, String password);
 
   Future<void> logout();
+
+  User get user;
 }

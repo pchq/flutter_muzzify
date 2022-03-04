@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:muzzify/l_presentation/app_theme.dart';
-import '/l_presentation/widgets/cards/track_card.dart';
 
+import '/l_presentation/app_theme.dart';
+import '/l_presentation/widgets/cards/track_card.dart';
 import '/models/track.dart';
 
 class ColletionList extends StatelessWidget {
