@@ -57,25 +57,43 @@ class _TracksListState extends State<TracksList> {
               itemBuilder: (_, index) => TrackCard(_tracks[index]),
               itemCount: _tracks.length,
             ),
-            if (!_isLoading && !_bloc.loadedAll)
-              MaterialButton(
-                onPressed: () {
-                  _bloc.load(widget.artistId);
+            SizedBox(height: 20),
+            if (!_bloc.loadedAll)
+              AnimatedSwitcher(
+                duration: Duration(milliseconds: 100),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return Container(
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: SizeTransition(
+                      sizeFactor: animation,
+                      axis: Axis.horizontal,
+                      child: child,
+                    ),
+                  );
                 },
-                child: Text(
-                  'Загрузить еще',
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                color: AppTheme.colorFirm,
-                height: 50,
-                minWidth: 160,
+                child: _isLoading
+                    ? LoadingIndicator()
+                    : MaterialButton(
+                        onPressed: () {
+                          _bloc.load(widget.artistId);
+                        },
+                        child: Text(
+                          'Загрузить еще',
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        color: AppTheme.colorFirm,
+                        height: 50,
+                        minWidth: 160,
+                      ),
               ),
-            if (_isLoading) LoadingIndicator(),
           ],
         );
       },
