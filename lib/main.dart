@@ -5,10 +5,6 @@ import '/l_domain/bloc/collection/collection_cubit.dart';
 import '/l_domain/bloc/artist/artist_cubit.dart';
 import '/l_domain/bloc/auth/auth_cubit.dart';
 import '/l_domain/bloc/track/track_cubit.dart';
-import '/l_domain/repositories/i_artist_repository.dart';
-import '/l_domain/repositories/i_auth_repository.dart';
-import '/l_domain/repositories/i_track_repository.dart';
-import '/l_domain/repositories/i_collection_repository.dart';
 import '/l_presentation/app_theme.dart';
 import '/core/service_provider.dart';
 import '/routing/app_router.dart';
@@ -29,25 +25,13 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthCubit>(
-          create: (BuildContext context) => AuthCubit(
-            authRepository: _serviceProvider.get<IAuthRepository>(),
-          ),
-        ),
+            create: (BuildContext context) => _serviceProvider.get<AuthCubit>()),
         BlocProvider<ArtistCubit>(
-          create: (BuildContext context) => ArtistCubit(
-            artistRepository: _serviceProvider.get<IArtistRepository>(),
-          ),
-        ),
+            create: (BuildContext context) => _serviceProvider.get<ArtistCubit>()),
         BlocProvider<TrackCubit>(
-          create: (BuildContext context) => TrackCubit(
-            trackRepository: _serviceProvider.get<ITrackRepository>(),
-          ),
-        ),
+            create: (BuildContext context) => _serviceProvider.get<TrackCubit>()),
         BlocProvider<CollectionCubit>(
-          create: (BuildContext context) => CollectionCubit(
-            collectionRepository: _serviceProvider.get<ICollectionRepository>(),
-          ),
-        ),
+            create: (BuildContext context) => _serviceProvider.get<CollectionCubit>()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

@@ -10,6 +10,10 @@ import '/l_domain/repositories/i_track_repository.dart';
 import '/l_domain/repositories/i_artist_repository.dart';
 import '/l_domain/repositories/i_auth_repository.dart';
 import '/l_domain/repositories/i_collection_repository.dart';
+import '/l_domain/bloc/auth/auth_cubit.dart';
+import '/l_domain/bloc/artist/artist_cubit.dart';
+import '/l_domain/bloc/collection/collection_cubit.dart';
+import '/l_domain/bloc/track/track_cubit.dart';
 import '/routing/app_router.dart';
 import '/routing/auth_guard.dart';
 
@@ -27,6 +31,20 @@ class ServiceProvider {
     );
     _getIt.registerLazySingleton<AuthGuard>(
       () => AuthGuard(authRepository: _getIt()),
+    );
+
+    // BLoC
+    _getIt.registerLazySingleton<AuthCubit>(
+      () => AuthCubit(authRepository: _getIt()),
+    );
+    _getIt.registerLazySingleton<ArtistCubit>(
+      () => ArtistCubit(artistRepository: _getIt()),
+    );
+    _getIt.registerLazySingleton<TrackCubit>(
+      () => TrackCubit(trackRepository: _getIt()),
+    );
+    _getIt.registerLazySingleton<CollectionCubit>(
+      () => CollectionCubit(collectionRepository: _getIt()),
     );
 
     // auth
