@@ -11,50 +11,55 @@ class ArtistCubit extends Cubit<ArtistState> {
   final IArtistRepository artistRepository;
   ArtistCubit({
     required this.artistRepository,
-  }) : super(const ArtistStateInitial());
+  }) : super(const ArtistState.initial());
 
-  int topArtistsPage = 0;
-  bool topArtistsLoadedAll = false;
+  int _topArtistsPage = 0;
+  bool _topArtistsLoadedAll = false;
+  final List<Artist> _topArtists = [];
   void loadTop() async {
-    if (state is ArtistStateLoading) return;
+    if (state is _Loading) return;
 
     try {
-      emit(ArtistStateLoading());
-      final artists = await artistRepository.loadTop(page: topArtistsPage);
-      emit(ArtistStateTopSuccess(artists));
+      emit(ArtistState.loading());
+      final artists = await artistRepository.loadTop(page: _topArtistsPage);
       if (artists.isNotEmpty) {
-        topArtistsPage++;
+        _topArtistsPage++;
+        _topArtists.addAll(artists);
       } else {
-        topArtistsLoadedAll = true;
+        _topArtistsLoadedAll = true;
       }
+      emit(ArtistState.topSuccess(_topArtists, _topArtistsLoadedAll));
     } catch (e) {
-      emit(ArtistStateError(e.toString()));
+      emit(ArtistState.error(e.toString()));
     }
   }
 
-  int searchPage = 0;
-  bool searchLoadedAll = false;
-  String searchQuery = '';
+  int _searchPage = 0;
+  bool _searchLoadedAll = false;
+  String _searchQuery = '';
+  final List<Artist> _searchArtists = [];
   void search(String query) async {
-    if (state is ArtistStateLoading) return;
+    if (state is _Loading) return;
 
-    if (query != searchQuery) {
-      searchPage = 0;
-      searchLoadedAll = false;
+    if (query != _searchQuery) {
+      _searchPage = 0;
+      _searchLoadedAll = false;
+      _searchArtists.clear();
     }
-    searchQuery = query;
+    _searchQuery = query;
 
     try {
-      emit(ArtistStateLoading());
-      final artists = await artistRepository.search(searchQuery, page: searchPage);
-      emit(ArtistStateSearchSuccess(artists));
+      emit(ArtistState.loading());
+      final artists = await artistRepository.search(_searchQuery, page: _searchPage);
       if (artists.isNotEmpty) {
-        searchPage++;
+        _searchPage++;
+        _searchArtists.addAll(artists);
       } else {
-        searchLoadedAll = true;
+        _searchLoadedAll = true;
       }
+      emit(ArtistState.searchSuccess(_searchArtists, _searchLoadedAll));
     } catch (e) {
-      emit(ArtistStateError(e.toString()));
+      emit(ArtistState.error(e.toString()));
     }
   }
 }

@@ -14,8 +14,8 @@ class ArtistsPage extends StatefulWidget {
 
 class _ArtistsPageState extends State<ArtistsPage> {
   bool _isLoading = true;
+  bool _allLoaded = false;
   final ScrollController _scrollCtrl = ScrollController();
-  final List<Artist> _artists = [];
   late final _bloc = context.read<ArtistCubit>();
 
   @override
@@ -23,7 +23,9 @@ class _ArtistsPageState extends State<ArtistsPage> {
     super.initState();
 
     _scrollCtrl.addListener(() {
-      if (_scrollCtrl.offset == _scrollCtrl.position.maxScrollExtent && !_isLoading) {
+      if (_scrollCtrl.offset == _scrollCtrl.position.maxScrollExtent &&
+          !_isLoading &&
+          !_allLoaded) {
         _bloc.loadTop();
       }
     });
@@ -37,6 +39,8 @@ class _ArtistsPageState extends State<ArtistsPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Artist> artists = [];
+
     return BlocBuilder<ArtistCubit, ArtistState>(
       builder: (context, state) {
         state.whenOrNull(
@@ -46,9 +50,10 @@ class _ArtistsPageState extends State<ArtistsPage> {
           loading: () {
             _isLoading = true;
           },
-          topSuccess: (items) {
-            _artists.addAll(items);
+          topSuccess: (items, allLoaded) {
+            artists = items;
             _isLoading = false;
+            _allLoaded = allLoaded;
           },
           error: (error) {
             _isLoading = false;
@@ -67,9 +72,9 @@ class _ArtistsPageState extends State<ArtistsPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (_artists.isNotEmpty)
+                if (artists.isNotEmpty)
                   ArtistsList(
-                    list: _artists,
+                    list: artists,
                   ),
                 if (_isLoading) LoadingIndicator(),
               ],

@@ -2,9 +2,9 @@ part of 'artist_cubit.dart';
 
 @freezed
 class ArtistState with _$ArtistState {
-  const factory ArtistState.initial() = ArtistStateInitial;
-  const factory ArtistState.loading() = ArtistStateLoading;
-  const factory ArtistState.topSuccess(List<Artist> artists) = ArtistStateTopSuccess;
-  const factory ArtistState.searchSuccess(List<Artist> artists) = ArtistStateSearchSuccess;
-  const factory ArtistState.error(String message) = ArtistStateError;
+  const factory ArtistState.initial() = _Initial;
+  const factory ArtistState.loading() = _Loading;
+  const factory ArtistState.topSuccess(List<Artist> artists, bool allLoaded) = _TopSuccess;
+  const factory ArtistState.searchSuccess(List<Artist> artists, bool allLoaded) = _SearchSuccess;
+  const factory ArtistState.error(String message) = _Error;
 }

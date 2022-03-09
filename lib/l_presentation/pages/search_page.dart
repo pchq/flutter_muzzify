@@ -15,9 +15,9 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   bool _isLoading = false;
   bool _notFound = false;
+  bool _allLoaded = false;
   final ScrollController _scrollCtrl = ScrollController();
   final TextEditingController _searchCtrl = TextEditingController();
-  final List<Artist> _artists = [];
   late final _bloc = context.read<ArtistCubit>();
   String _curQuery = '';
 
@@ -26,7 +26,9 @@ class _SearchPageState extends State<SearchPage> {
     super.initState();
 
     _scrollCtrl.addListener(() {
-      if (_scrollCtrl.offset == _scrollCtrl.position.maxScrollExtent && !_isLoading) {
+      if (_scrollCtrl.offset == _scrollCtrl.position.maxScrollExtent &&
+          !_isLoading &&
+          !_allLoaded) {
         _loadArtists();
       }
     });
@@ -35,8 +37,6 @@ class _SearchPageState extends State<SearchPage> {
       if (_curQuery != _searchCtrl.text) {
         _curQuery = _searchCtrl.text;
         await Future.delayed(Duration(milliseconds: 1000));
-
-        _artists.clear();
         _loadArtists();
       }
     });
@@ -55,6 +55,8 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Artist> artists = [];
+
     return BlocBuilder<ArtistCubit, ArtistState>(
       builder: (context, state) {
         state.whenOrNull(
@@ -64,10 +66,11 @@ class _SearchPageState extends State<SearchPage> {
           loading: () {
             _isLoading = true;
           },
-          searchSuccess: (items) {
-            _artists.addAll(items);
+          searchSuccess: (items, allLoaded) {
+            artists = items;
             _isLoading = false;
-            _notFound = (_artists.isEmpty && _searchCtrl.text.isNotEmpty);
+            _allLoaded = allLoaded;
+            _notFound = (items.isEmpty && _searchCtrl.text.isNotEmpty);
           },
           error: (error) {
             _isLoading = false;
@@ -88,9 +91,9 @@ class _SearchPageState extends State<SearchPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SearchField(controller: _searchCtrl),
-                if (_artists.isNotEmpty)
+                if (artists.isNotEmpty)
                   ArtistsList(
-                    list: _artists,
+                    list: artists,
                   ),
                 if (_notFound && !_isLoading)
                   Container(
