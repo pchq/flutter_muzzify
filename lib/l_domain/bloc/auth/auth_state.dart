@@ -2,8 +2,8 @@ part of 'auth_cubit.dart';
 
 @freezed
 class AuthState with _$AuthState {
-  const factory AuthState.initial(bool isRegistration) = AuthStateInitial;
-  const factory AuthState.loading() = AuthStateLoading;
-  const factory AuthState.success(String token) = AuthStateSuccess;
-  const factory AuthState.error(String message) = AuthStateError;
+  const factory AuthState.initial([@Default(false) bool isRegistration]) = _Initial;
+  const factory AuthState.loading() = _Loading;
+  const factory AuthState.success() = _Success;
+  const factory AuthState.error(String message) = _Error;
 }

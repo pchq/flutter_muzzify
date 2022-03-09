@@ -47,6 +47,10 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData,
           child: ArtistPage(key: args.key, artist: args.artist));
     },
+    AuthRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const AuthPage());
+    },
     SearchRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const SearchPage());
@@ -54,10 +58,6 @@ class _$AppRouter extends RootStackRouter {
     CollectionRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const CollectionPage());
-    },
-    AuthRoute.name: (routeData) {
-      return AdaptivePage<dynamic>(
-          routeData: routeData, child: const AuthPage());
     }
   };
 
@@ -71,7 +71,9 @@ class _$AppRouter extends RootStackRouter {
                 RouteConfig(ArtistsRoute.name,
                     path: '', parent: ArtistsTab.name),
                 RouteConfig(ArtistRoute.name,
-                    path: 'artist-page', parent: ArtistsTab.name)
+                    path: 'artist-page', parent: ArtistsTab.name),
+                RouteConfig(AuthRoute.name,
+                    path: 'auth-page', parent: ArtistsTab.name)
               ]),
           RouteConfig(SearchTab.name,
               path: 'empty-router-page',
@@ -79,7 +81,9 @@ class _$AppRouter extends RootStackRouter {
               children: [
                 RouteConfig(SearchRoute.name, path: '', parent: SearchTab.name),
                 RouteConfig(ArtistRoute.name,
-                    path: 'artist-page', parent: SearchTab.name)
+                    path: 'artist-page', parent: SearchTab.name),
+                RouteConfig(AuthRoute.name,
+                    path: 'auth-page', parent: SearchTab.name)
               ]),
           RouteConfig(CollectionTab.name,
               path: 'empty-router-page',
@@ -166,6 +170,14 @@ class ArtistRouteArgs {
 }
 
 /// generated route for
+/// [AuthPage]
+class AuthRoute extends PageRouteInfo<void> {
+  const AuthRoute() : super(AuthRoute.name, path: 'auth-page');
+
+  static const String name = 'AuthRoute';
+}
+
+/// generated route for
 /// [SearchPage]
 class SearchRoute extends PageRouteInfo<void> {
   const SearchRoute() : super(SearchRoute.name, path: '');
@@ -179,12 +191,4 @@ class CollectionRoute extends PageRouteInfo<void> {
   const CollectionRoute() : super(CollectionRoute.name, path: '');
 
   static const String name = 'CollectionRoute';
-}
-
-/// generated route for
-/// [AuthPage]
-class AuthRoute extends PageRouteInfo<void> {
-  const AuthRoute() : super(AuthRoute.name, path: 'auth-page');
-
-  static const String name = 'AuthRoute';
 }

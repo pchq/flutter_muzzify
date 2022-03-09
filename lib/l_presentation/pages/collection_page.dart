@@ -41,7 +41,6 @@ class _CollectionPageState extends State<CollectionPage> {
             icon: const Icon(Icons.person_rounded),
             onPressed: () {
               Scaffold.of(context).openDrawer();
-              // authBloc.logout();
             },
           );
         }),

@@ -12,35 +12,45 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit({
     required this.authRepository,
-  }) : super(const AuthStateInitial(false));
+  }) : super(AuthState.initial());
 
+  /// текущее состояние кнопки регистрация / авторизация
   bool isRegistration = false;
 
+  /// авторизация/регистрация
   Future<void> login(String email, String password) async {
     try {
-      emit(const AuthStateLoading());
+      emit(AuthState.loading());
       var result = isRegistration
           ? await authRepository.register(email, password)
           : await authRepository.login(email, password);
       if (result != null) {
-        emit(AuthStateSuccess(result));
+        emit(AuthState.success());
       } else {
-        emit(const AuthStateError('cubit error'));
+        emit(AuthState.error('cubit error'));
       }
     } catch (e) {
       print(e.toString());
-      emit(AuthStateError(e.toString()));
+      emit(AuthState.error(e.toString()));
     }
   }
 
+  /// выход
   Future<void> logout() async {
+    emit(AuthState.loading());
     await authRepository.logout();
+    emit(AuthState.initial());
   }
 
+  /// переключатель регистрация-авторизация
   void toggleAuthType(bool isRegistration) {
     this.isRegistration = isRegistration;
-    emit(AuthStateInitial(isRegistration));
+    emit(AuthState.initial(isRegistration));
   }
 
+  /// данные текущего пользователя
   User get user => authRepository.user;
+
+  /// авторизован ли пользователь
+  bool get isLogin => authRepository.isLogin();
 }

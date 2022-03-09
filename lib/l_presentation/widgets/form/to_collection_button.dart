@@ -1,5 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '/routing/app_router.dart';
+import '/l_domain/bloc/auth/auth_cubit.dart';
 import '/l_domain/bloc/collection/collection_cubit.dart';
 import '/l_presentation/app_theme.dart';
 import '/models/track.dart';
@@ -28,6 +31,7 @@ class _ToCollectionButtonState extends State<ToCollectionButton> {
 
   @override
   Widget build(BuildContext context) {
+    bool isLogin = context.read<AuthCubit>().isLogin;
     return BlocBuilder<CollectionCubit, CollectionState>(
       builder: (context, state) {
         state.when(
@@ -43,42 +47,61 @@ class _ToCollectionButtonState extends State<ToCollectionButton> {
             _isLoading = false;
           },
         );
-        return MaterialButton(
-          onPressed: () {
-            if (_isLoading) {
-              return;
-            } else if (_inCollection) {
-              _bloc.remove(widget.track);
-            } else {
-              _bloc.add(widget.track);
-            }
-          },
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30.0),
-          ),
-          color: AppTheme.colorFirm,
-          height: 30,
-          child: AnimatedSwitcher(
-            duration: Duration(milliseconds: 200),
-            child: _isLoading
-                ? SizedBox(
-                    key: Key('loader'),
-                    height: 20,
-                    width: 20,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 1,
-                      color: AppTheme.colorBrightWhite,
+        if (isLogin) {
+          return MaterialButton(
+            onPressed: () {
+              if (_isLoading) {
+                return;
+              } else if (_inCollection) {
+                _bloc.remove(widget.track);
+              } else {
+                _bloc.add(widget.track);
+              }
+            },
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            color: AppTheme.colorFirm,
+            height: 30,
+            child: AnimatedSwitcher(
+              duration: Duration(milliseconds: 200),
+              child: _isLoading
+                  ? SizedBox(
+                      key: Key('loader'),
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 1,
+                        color: AppTheme.colorBrightWhite,
+                      ),
+                    )
+                  : Text(
+                      _inCollection ? 'Удалить из коллекции' : 'В коллекцию',
+                      key: Key('$_inCollection'),
+                      style: TextStyle(
+                        fontSize: 12,
+                      ),
                     ),
-                  )
-                : Text(
-                    _inCollection ? 'Удалить из коллекции' : 'В коллекцию',
-                    key: Key('$_inCollection'),
-                    style: TextStyle(
-                      fontSize: 12,
-                    ),
-                  ),
-          ),
-        );
+            ),
+          );
+        } else {
+          return MaterialButton(
+            onPressed: () {
+              context.router.push(AuthRoute());
+            },
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            color: AppTheme.colorGreyMiddle,
+            height: 30,
+            child: Text(
+              'В коллекцию',
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
+          );
+        }
       },
     );
   }

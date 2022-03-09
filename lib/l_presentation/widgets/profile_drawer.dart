@@ -8,7 +8,7 @@ class ProfileDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authBloc = context.watch<AuthCubit>();
+    final authBloc = context.read<AuthCubit>();
 
     return Drawer(
       child: Column(

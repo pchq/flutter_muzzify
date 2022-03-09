@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/l_presentation/widgets/loading_indicator.dart';
 import '/routing/app_router.dart';
-
 import '/l_domain/bloc/auth/auth_cubit.dart';
+import '/l_presentation/widgets/form/input_field.dart';
+import '/l_presentation/widgets/loading_indicator.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -17,6 +17,8 @@ class _AuthPageState extends State<AuthPage> {
   final _emailFieldController = TextEditingController();
   final _passwdFieldController = TextEditingController();
   late final _authBloc = context.watch<AuthCubit>();
+  bool _isLoading = false;
+  bool _authRedirected = false;
 
   @override
   void dispose() {
@@ -31,10 +33,27 @@ class _AuthPageState extends State<AuthPage> {
 
     return BlocBuilder<AuthCubit, AuthState>(
       builder: (context, state) {
-        final enableControls = state is! AuthStateLoading;
-        if (state is AuthStateSuccess) {
-          AutoRouter.of(context).replace(CollectionRoute());
-        }
+        state.whenOrNull(success: () {
+          if (!_authRedirected) {
+            _authRedirected = true;
+            final StackRouter router = AutoRouter.of(context);
+
+            if (router.canNavigateBack && router.current.parent?.name != 'CollectionTab') {
+              router.navigateBack();
+            } else {
+              router.replace(CollectionRoute());
+            }
+          }
+        });
+        state.maybeWhen(
+          loading: () {
+            _isLoading = true;
+          },
+          orElse: () {
+            _isLoading = false;
+          },
+        );
+
         return Scaffold(
           body: Padding(
             padding: const EdgeInsets.all(25),
@@ -47,43 +66,32 @@ class _AuthPageState extends State<AuthPage> {
                   style: TextStyle(fontSize: 16),
                 ),
                 SizedBox(height: 20),
-                _InputField(
+                InputField(
                   controller: _emailFieldController,
-                  enabled: enableControls,
+                  enabled: !_isLoading,
                   label: 'E-mail',
                 ),
-                _InputField(
+                InputField(
                   controller: _passwdFieldController,
-                  enabled: enableControls,
+                  enabled: !_isLoading,
                   label: 'Пароль',
                   isPasswd: true,
                 ),
                 SizedBox(height: 20),
-                state is AuthStateLoading
-                    ? Container(
-                        padding: const EdgeInsets.all(10),
-                        height: 50,
-                        width: 50,
-                        child: const Center(
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                          ),
-                        ),
-                      )
-                    : enableControls
-                        ? ElevatedButton(
-                            onPressed: () {
-                              _authBloc.login(
-                                _emailFieldController.text,
-                                _passwdFieldController.text,
-                              );
-                            },
-                            child: Text(isRegistration ? 'Регистрация' : 'Войти'),
-                          )
-                        : LoadingIndicator(),
+                _isLoading
+                    ? LoadingIndicator()
+                    : ElevatedButton(
+                        onPressed: () {
+                          _authBloc.login(
+                            _emailFieldController.text,
+                            _passwdFieldController.text,
+                          );
+                        },
+                        child: Text(isRegistration ? 'Регистрация' : 'Войти'),
+                      ),
                 const Spacer(flex: 3),
                 _BottomAuthToggle(
-                  enabled: enableControls,
+                  enabled: !_isLoading,
                   isRegistration: isRegistration,
                   onPressed: _authBloc.toggleAuthType,
                 ),
@@ -92,36 +100,6 @@ class _AuthPageState extends State<AuthPage> {
           ),
         );
       },
-    );
-  }
-}
-
-class _InputField extends StatelessWidget {
-  final TextEditingController controller;
-  final String label;
-  final bool enabled;
-  final bool isPasswd;
-
-  const _InputField({
-    Key? key,
-    required this.controller,
-    required this.label,
-    required this.enabled,
-    this.isPasswd = false,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      enabled: enabled,
-      obscureText: isPasswd,
-      enableSuggestions: !isPasswd,
-      autocorrect: !isPasswd,
-      controller: controller,
-      decoration: InputDecoration(
-        labelText: label,
-        border: const UnderlineInputBorder(),
-      ),
     );
   }
 }

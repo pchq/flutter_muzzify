@@ -31,6 +31,7 @@ part 'app_router.gr.dart';
             AutoRoute(
               page: ArtistPage,
             ),
+            ..._commonNestedRoutes,
           ],
         ),
         AutoRoute(
@@ -44,6 +45,7 @@ part 'app_router.gr.dart';
             AutoRoute(
               page: ArtistPage,
             ),
+            ..._commonNestedRoutes,
           ],
         ),
         AutoRoute(
@@ -55,7 +57,7 @@ part 'app_router.gr.dart';
               page: CollectionPage,
               guards: [AuthGuard],
             ),
-            AutoRoute(page: AuthPage),
+            ..._commonNestedRoutes,
           ],
         ),
       ],
@@ -65,3 +67,7 @@ part 'app_router.gr.dart';
 class AppRouter extends _$AppRouter {
   AppRouter({required AuthGuard authGuard}) : super(authGuard: authGuard);
 }
+
+const _commonNestedRoutes = [
+  AutoRoute(page: AuthPage),
+];

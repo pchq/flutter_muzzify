@@ -18,24 +18,22 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
-  AuthStateInitial initial(bool isRegistration) {
-    return AuthStateInitial(
+  _Initial initial([bool isRegistration = false]) {
+    return _Initial(
       isRegistration,
     );
   }
 
-  AuthStateLoading loading() {
-    return const AuthStateLoading();
+  _Loading loading() {
+    return const _Loading();
   }
 
-  AuthStateSuccess success(String token) {
-    return AuthStateSuccess(
-      token,
-    );
+  _Success success() {
+    return const _Success();
   }
 
-  AuthStateError error(String message) {
-    return AuthStateError(
+  _Error error(String message) {
+    return _Error(
       message,
     );
   }
@@ -50,7 +48,7 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isRegistration) initial,
     required TResult Function() loading,
-    required TResult Function(String token) success,
+    required TResult Function() success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -58,7 +56,7 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isRegistration)? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -66,33 +64,33 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isRegistration)? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthStateInitial value) initial,
-    required TResult Function(AuthStateLoading value) loading,
-    required TResult Function(AuthStateSuccess value) success,
-    required TResult Function(AuthStateError value) error,
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(AuthStateInitial value)? initial,
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthStateInitial value)? initial,
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,28 +112,26 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $AuthStateInitialCopyWith<$Res> {
-  factory $AuthStateInitialCopyWith(
-          AuthStateInitial value, $Res Function(AuthStateInitial) then) =
-      _$AuthStateInitialCopyWithImpl<$Res>;
+abstract class _$InitialCopyWith<$Res> {
+  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
+      __$InitialCopyWithImpl<$Res>;
   $Res call({bool isRegistration});
 }
 
 /// @nodoc
-class _$AuthStateInitialCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements $AuthStateInitialCopyWith<$Res> {
-  _$AuthStateInitialCopyWithImpl(
-      AuthStateInitial _value, $Res Function(AuthStateInitial) _then)
-      : super(_value, (v) => _then(v as AuthStateInitial));
+class __$InitialCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$InitialCopyWith<$Res> {
+  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
+      : super(_value, (v) => _then(v as _Initial));
 
   @override
-  AuthStateInitial get _value => super._value as AuthStateInitial;
+  _Initial get _value => super._value as _Initial;
 
   @override
   $Res call({
     Object? isRegistration = freezed,
   }) {
-    return _then(AuthStateInitial(
+    return _then(_Initial(
       isRegistration == freezed
           ? _value.isRegistration
           : isRegistration // ignore: cast_nullable_to_non_nullable
@@ -146,9 +142,10 @@ class _$AuthStateInitialCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthStateInitial implements AuthStateInitial {
-  const _$AuthStateInitial(this.isRegistration);
+class _$_Initial implements _Initial {
+  const _$_Initial([this.isRegistration = false]);
 
+  @JsonKey()
   @override
   final bool isRegistration;
 
@@ -161,7 +158,7 @@ class _$AuthStateInitial implements AuthStateInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AuthStateInitial &&
+            other is _Initial &&
             const DeepCollectionEquality()
                 .equals(other.isRegistration, isRegistration));
   }
@@ -172,15 +169,15 @@ class _$AuthStateInitial implements AuthStateInitial {
 
   @JsonKey(ignore: true)
   @override
-  $AuthStateInitialCopyWith<AuthStateInitial> get copyWith =>
-      _$AuthStateInitialCopyWithImpl<AuthStateInitial>(this, _$identity);
+  _$InitialCopyWith<_Initial> get copyWith =>
+      __$InitialCopyWithImpl<_Initial>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isRegistration) initial,
     required TResult Function() loading,
-    required TResult Function(String token) success,
+    required TResult Function() success,
     required TResult Function(String message) error,
   }) {
     return initial(isRegistration);
@@ -191,7 +188,7 @@ class _$AuthStateInitial implements AuthStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isRegistration)? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String message)? error,
   }) {
     return initial?.call(isRegistration);
@@ -202,7 +199,7 @@ class _$AuthStateInitial implements AuthStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isRegistration)? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -215,10 +212,10 @@ class _$AuthStateInitial implements AuthStateInitial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthStateInitial value) initial,
-    required TResult Function(AuthStateLoading value) loading,
-    required TResult Function(AuthStateSuccess value) success,
-    required TResult Function(AuthStateError value) error,
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Error value) error,
   }) {
     return initial(this);
   }
@@ -226,10 +223,10 @@ class _$AuthStateInitial implements AuthStateInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(AuthStateInitial value)? initial,
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) {
     return initial?.call(this);
   }
@@ -237,10 +234,10 @@ class _$AuthStateInitial implements AuthStateInitial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthStateInitial value)? initial,
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -250,37 +247,35 @@ class _$AuthStateInitial implements AuthStateInitial {
   }
 }
 
-abstract class AuthStateInitial implements AuthState {
-  const factory AuthStateInitial(bool isRegistration) = _$AuthStateInitial;
+abstract class _Initial implements AuthState {
+  const factory _Initial([bool isRegistration]) = _$_Initial;
 
   bool get isRegistration;
   @JsonKey(ignore: true)
-  $AuthStateInitialCopyWith<AuthStateInitial> get copyWith =>
+  _$InitialCopyWith<_Initial> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AuthStateLoadingCopyWith<$Res> {
-  factory $AuthStateLoadingCopyWith(
-          AuthStateLoading value, $Res Function(AuthStateLoading) then) =
-      _$AuthStateLoadingCopyWithImpl<$Res>;
+abstract class _$LoadingCopyWith<$Res> {
+  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
+      __$LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AuthStateLoadingCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements $AuthStateLoadingCopyWith<$Res> {
-  _$AuthStateLoadingCopyWithImpl(
-      AuthStateLoading _value, $Res Function(AuthStateLoading) _then)
-      : super(_value, (v) => _then(v as AuthStateLoading));
+class __$LoadingCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$LoadingCopyWith<$Res> {
+  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
+      : super(_value, (v) => _then(v as _Loading));
 
   @override
-  AuthStateLoading get _value => super._value as AuthStateLoading;
+  _Loading get _value => super._value as _Loading;
 }
 
 /// @nodoc
 
-class _$AuthStateLoading implements AuthStateLoading {
-  const _$AuthStateLoading();
+class _$_Loading implements _Loading {
+  const _$_Loading();
 
   @override
   String toString() {
@@ -290,7 +285,7 @@ class _$AuthStateLoading implements AuthStateLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is AuthStateLoading);
+        (other.runtimeType == runtimeType && other is _Loading);
   }
 
   @override
@@ -301,7 +296,7 @@ class _$AuthStateLoading implements AuthStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function(bool isRegistration) initial,
     required TResult Function() loading,
-    required TResult Function(String token) success,
+    required TResult Function() success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -312,7 +307,7 @@ class _$AuthStateLoading implements AuthStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isRegistration)? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String message)? error,
   }) {
     return loading?.call();
@@ -323,7 +318,7 @@ class _$AuthStateLoading implements AuthStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isRegistration)? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -336,10 +331,10 @@ class _$AuthStateLoading implements AuthStateLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthStateInitial value) initial,
-    required TResult Function(AuthStateLoading value) loading,
-    required TResult Function(AuthStateSuccess value) success,
-    required TResult Function(AuthStateError value) error,
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Error value) error,
   }) {
     return loading(this);
   }
@@ -347,10 +342,10 @@ class _$AuthStateLoading implements AuthStateLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(AuthStateInitial value)? initial,
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) {
     return loading?.call(this);
   }
@@ -358,10 +353,10 @@ class _$AuthStateLoading implements AuthStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthStateInitial value)? initial,
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -371,80 +366,54 @@ class _$AuthStateLoading implements AuthStateLoading {
   }
 }
 
-abstract class AuthStateLoading implements AuthState {
-  const factory AuthStateLoading() = _$AuthStateLoading;
+abstract class _Loading implements AuthState {
+  const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
-abstract class $AuthStateSuccessCopyWith<$Res> {
-  factory $AuthStateSuccessCopyWith(
-          AuthStateSuccess value, $Res Function(AuthStateSuccess) then) =
-      _$AuthStateSuccessCopyWithImpl<$Res>;
-  $Res call({String token});
+abstract class _$SuccessCopyWith<$Res> {
+  factory _$SuccessCopyWith(_Success value, $Res Function(_Success) then) =
+      __$SuccessCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$AuthStateSuccessCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements $AuthStateSuccessCopyWith<$Res> {
-  _$AuthStateSuccessCopyWithImpl(
-      AuthStateSuccess _value, $Res Function(AuthStateSuccess) _then)
-      : super(_value, (v) => _then(v as AuthStateSuccess));
+class __$SuccessCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$SuccessCopyWith<$Res> {
+  __$SuccessCopyWithImpl(_Success _value, $Res Function(_Success) _then)
+      : super(_value, (v) => _then(v as _Success));
 
   @override
-  AuthStateSuccess get _value => super._value as AuthStateSuccess;
-
-  @override
-  $Res call({
-    Object? token = freezed,
-  }) {
-    return _then(AuthStateSuccess(
-      token == freezed
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  _Success get _value => super._value as _Success;
 }
 
 /// @nodoc
 
-class _$AuthStateSuccess implements AuthStateSuccess {
-  const _$AuthStateSuccess(this.token);
-
-  @override
-  final String token;
+class _$_Success implements _Success {
+  const _$_Success();
 
   @override
   String toString() {
-    return 'AuthState.success(token: $token)';
+    return 'AuthState.success()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is AuthStateSuccess &&
-            const DeepCollectionEquality().equals(other.token, token));
+        (other.runtimeType == runtimeType && other is _Success);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(token));
-
-  @JsonKey(ignore: true)
-  @override
-  $AuthStateSuccessCopyWith<AuthStateSuccess> get copyWith =>
-      _$AuthStateSuccessCopyWithImpl<AuthStateSuccess>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isRegistration) initial,
     required TResult Function() loading,
-    required TResult Function(String token) success,
+    required TResult Function() success,
     required TResult Function(String message) error,
   }) {
-    return success(token);
+    return success();
   }
 
   @override
@@ -452,10 +421,10 @@ class _$AuthStateSuccess implements AuthStateSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isRegistration)? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String message)? error,
   }) {
-    return success?.call(token);
+    return success?.call();
   }
 
   @override
@@ -463,12 +432,12 @@ class _$AuthStateSuccess implements AuthStateSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isRegistration)? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(token);
+      return success();
     }
     return orElse();
   }
@@ -476,10 +445,10 @@ class _$AuthStateSuccess implements AuthStateSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthStateInitial value) initial,
-    required TResult Function(AuthStateLoading value) loading,
-    required TResult Function(AuthStateSuccess value) success,
-    required TResult Function(AuthStateError value) error,
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Error value) error,
   }) {
     return success(this);
   }
@@ -487,10 +456,10 @@ class _$AuthStateSuccess implements AuthStateSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(AuthStateInitial value)? initial,
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) {
     return success?.call(this);
   }
@@ -498,10 +467,10 @@ class _$AuthStateSuccess implements AuthStateSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthStateInitial value)? initial,
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -511,38 +480,31 @@ class _$AuthStateSuccess implements AuthStateSuccess {
   }
 }
 
-abstract class AuthStateSuccess implements AuthState {
-  const factory AuthStateSuccess(String token) = _$AuthStateSuccess;
-
-  String get token;
-  @JsonKey(ignore: true)
-  $AuthStateSuccessCopyWith<AuthStateSuccess> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _Success implements AuthState {
+  const factory _Success() = _$_Success;
 }
 
 /// @nodoc
-abstract class $AuthStateErrorCopyWith<$Res> {
-  factory $AuthStateErrorCopyWith(
-          AuthStateError value, $Res Function(AuthStateError) then) =
-      _$AuthStateErrorCopyWithImpl<$Res>;
+abstract class _$ErrorCopyWith<$Res> {
+  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
+      __$ErrorCopyWithImpl<$Res>;
   $Res call({String message});
 }
 
 /// @nodoc
-class _$AuthStateErrorCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements $AuthStateErrorCopyWith<$Res> {
-  _$AuthStateErrorCopyWithImpl(
-      AuthStateError _value, $Res Function(AuthStateError) _then)
-      : super(_value, (v) => _then(v as AuthStateError));
+class __$ErrorCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$ErrorCopyWith<$Res> {
+  __$ErrorCopyWithImpl(_Error _value, $Res Function(_Error) _then)
+      : super(_value, (v) => _then(v as _Error));
 
   @override
-  AuthStateError get _value => super._value as AuthStateError;
+  _Error get _value => super._value as _Error;
 
   @override
   $Res call({
     Object? message = freezed,
   }) {
-    return _then(AuthStateError(
+    return _then(_Error(
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -553,8 +515,8 @@ class _$AuthStateErrorCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthStateError implements AuthStateError {
-  const _$AuthStateError(this.message);
+class _$_Error implements _Error {
+  const _$_Error(this.message);
 
   @override
   final String message;
@@ -568,7 +530,7 @@ class _$AuthStateError implements AuthStateError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is AuthStateError &&
+            other is _Error &&
             const DeepCollectionEquality().equals(other.message, message));
   }
 
@@ -578,15 +540,15 @@ class _$AuthStateError implements AuthStateError {
 
   @JsonKey(ignore: true)
   @override
-  $AuthStateErrorCopyWith<AuthStateError> get copyWith =>
-      _$AuthStateErrorCopyWithImpl<AuthStateError>(this, _$identity);
+  _$ErrorCopyWith<_Error> get copyWith =>
+      __$ErrorCopyWithImpl<_Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isRegistration) initial,
     required TResult Function() loading,
-    required TResult Function(String token) success,
+    required TResult Function() success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -597,7 +559,7 @@ class _$AuthStateError implements AuthStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(bool isRegistration)? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String message)? error,
   }) {
     return error?.call(message);
@@ -608,7 +570,7 @@ class _$AuthStateError implements AuthStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isRegistration)? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -621,10 +583,10 @@ class _$AuthStateError implements AuthStateError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthStateInitial value) initial,
-    required TResult Function(AuthStateLoading value) loading,
-    required TResult Function(AuthStateSuccess value) success,
-    required TResult Function(AuthStateError value) error,
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Error value) error,
   }) {
     return error(this);
   }
@@ -632,10 +594,10 @@ class _$AuthStateError implements AuthStateError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(AuthStateInitial value)? initial,
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) {
     return error?.call(this);
   }
@@ -643,10 +605,10 @@ class _$AuthStateError implements AuthStateError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthStateInitial value)? initial,
-    TResult Function(AuthStateLoading value)? loading,
-    TResult Function(AuthStateSuccess value)? success,
-    TResult Function(AuthStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -656,11 +618,10 @@ class _$AuthStateError implements AuthStateError {
   }
 }
 
-abstract class AuthStateError implements AuthState {
-  const factory AuthStateError(String message) = _$AuthStateError;
+abstract class _Error implements AuthState {
+  const factory _Error(String message) = _$_Error;
 
   String get message;
   @JsonKey(ignore: true)
-  $AuthStateErrorCopyWith<AuthStateError> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
 }
