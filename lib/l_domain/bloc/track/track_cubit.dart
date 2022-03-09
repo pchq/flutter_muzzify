@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:muzzify/l_domain/repositories/i_track_repository.dart';
-import 'package:muzzify/models/track.dart';
+import '/l_domain/repositories/i_track_repository.dart';
+import '/models/track.dart';
 
 part 'track_cubit.freezed.dart';
 part 'track_state.dart';
@@ -10,31 +10,31 @@ class TrackCubit extends Cubit<TrackState> {
   final ITrackRepository trackRepository;
   TrackCubit({
     required this.trackRepository,
-  }) : super(TrackStateInitial());
+  }) : super(TrackState.initial());
 
-  int page = 0;
-  bool loadedAll = false;
-  String _artistId = '';
-  void load(String artistId) async {
-    if (state is TrackStateLoading) return;
+  int _page = 0;
+  bool _loadedAll = false;
+  final List<Track> _artistTracks = [];
+  void load(String artistId, {bool isFirst = false}) async {
+    if (state is _Loading) return;
 
-    if (_artistId != artistId) {
-      page = 0;
-      loadedAll = false;
+    if (isFirst) {
+      _page = 0;
+      _loadedAll = false;
+      _artistTracks.clear();
     }
-    _artistId = artistId;
-
     try {
-      emit(TrackStateLoading());
-      final artists = await trackRepository.loadByArtist(_artistId, page: page);
-      emit(TrackStateSuccess(artists));
-      if (artists.isNotEmpty) {
-        page++;
+      emit(TrackState.loading());
+      final tracks = await trackRepository.loadByArtist(artistId, page: _page);
+      _artistTracks.addAll(tracks);
+      if (tracks.isNotEmpty) {
+        _page++;
       } else {
-        loadedAll = true;
+        _loadedAll = true;
       }
+      emit(TrackState.success(_artistTracks, _loadedAll));
     } catch (e) {
-      emit(TrackStateError(e.toString()));
+      emit(TrackState.error(e.toString()));
     }
   }
 }

@@ -20,25 +20,28 @@ class TracksList extends StatefulWidget {
 
 class _TracksListState extends State<TracksList> {
   bool _isLoading = true;
-  final List<Track> _tracks = [];
+  bool _allLoaded = false;
   late final _bloc = context.read<TrackCubit>();
 
   @override
   void initState() {
-    _bloc.load(widget.artistId);
+    _bloc.load(widget.artistId, isFirst: true);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Track> tracks = [];
+
     return BlocBuilder<TrackCubit, TrackState>(
       builder: (context, state) {
         state.whenOrNull(
           loading: () {
             _isLoading = true;
           },
-          success: (items) {
-            _tracks.addAll(items);
+          success: (items, allLoaded) {
+            tracks = items;
+            _allLoaded = allLoaded;
             _isLoading = false;
           },
           error: (error) {
@@ -54,11 +57,11 @@ class _TracksListState extends State<TracksList> {
             ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
-              itemBuilder: (_, index) => TrackCard(_tracks[index]),
-              itemCount: _tracks.length,
+              itemBuilder: (_, index) => TrackCard(tracks[index]),
+              itemCount: tracks.length,
             ),
             SizedBox(height: 20),
-            if (!_bloc.loadedAll)
+            if (!_allLoaded)
               AnimatedSwitcher(
                 duration: Duration(milliseconds: 100),
                 transitionBuilder: (Widget child, Animation<double> animation) {

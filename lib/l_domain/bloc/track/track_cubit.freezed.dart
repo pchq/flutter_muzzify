@@ -18,22 +18,23 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$TrackStateTearOff {
   const _$TrackStateTearOff();
 
-  TrackStateInitial initial() {
-    return const TrackStateInitial();
+  _Initial initial() {
+    return const _Initial();
   }
 
-  TrackStateLoading loading() {
-    return const TrackStateLoading();
+  _Loading loading() {
+    return const _Loading();
   }
 
-  TrackStateSuccess success(List<Track> tracks) {
-    return TrackStateSuccess(
+  _Success success(List<Track> tracks, bool allLoaded) {
+    return _Success(
       tracks,
+      allLoaded,
     );
   }
 
-  TrackStateError error(String message) {
-    return TrackStateError(
+  _Error error(String message) {
+    return _Error(
       message,
     );
   }
@@ -48,7 +49,7 @@ mixin _$TrackState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Track> tracks) success,
+    required TResult Function(List<Track> tracks, bool allLoaded) success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,7 +57,7 @@ mixin _$TrackState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Track> tracks)? success,
+    TResult Function(List<Track> tracks, bool allLoaded)? success,
     TResult Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,33 +65,33 @@ mixin _$TrackState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Track> tracks)? success,
+    TResult Function(List<Track> tracks, bool allLoaded)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TrackStateInitial value) initial,
-    required TResult Function(TrackStateLoading value) loading,
-    required TResult Function(TrackStateSuccess value) success,
-    required TResult Function(TrackStateError value) error,
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TrackStateInitial value)? initial,
-    TResult Function(TrackStateLoading value)? loading,
-    TResult Function(TrackStateSuccess value)? success,
-    TResult Function(TrackStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TrackStateInitial value)? initial,
-    TResult Function(TrackStateLoading value)? loading,
-    TResult Function(TrackStateSuccess value)? success,
-    TResult Function(TrackStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,28 +114,25 @@ class _$TrackStateCopyWithImpl<$Res> implements $TrackStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $TrackStateInitialCopyWith<$Res> {
-  factory $TrackStateInitialCopyWith(
-          TrackStateInitial value, $Res Function(TrackStateInitial) then) =
-      _$TrackStateInitialCopyWithImpl<$Res>;
+abstract class _$InitialCopyWith<$Res> {
+  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
+      __$InitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$TrackStateInitialCopyWithImpl<$Res>
-    extends _$TrackStateCopyWithImpl<$Res>
-    implements $TrackStateInitialCopyWith<$Res> {
-  _$TrackStateInitialCopyWithImpl(
-      TrackStateInitial _value, $Res Function(TrackStateInitial) _then)
-      : super(_value, (v) => _then(v as TrackStateInitial));
+class __$InitialCopyWithImpl<$Res> extends _$TrackStateCopyWithImpl<$Res>
+    implements _$InitialCopyWith<$Res> {
+  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
+      : super(_value, (v) => _then(v as _Initial));
 
   @override
-  TrackStateInitial get _value => super._value as TrackStateInitial;
+  _Initial get _value => super._value as _Initial;
 }
 
 /// @nodoc
 
-class _$TrackStateInitial implements TrackStateInitial {
-  const _$TrackStateInitial();
+class _$_Initial implements _Initial {
+  const _$_Initial();
 
   @override
   String toString() {
@@ -144,7 +142,7 @@ class _$TrackStateInitial implements TrackStateInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is TrackStateInitial);
+        (other.runtimeType == runtimeType && other is _Initial);
   }
 
   @override
@@ -155,7 +153,7 @@ class _$TrackStateInitial implements TrackStateInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Track> tracks) success,
+    required TResult Function(List<Track> tracks, bool allLoaded) success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -166,7 +164,7 @@ class _$TrackStateInitial implements TrackStateInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Track> tracks)? success,
+    TResult Function(List<Track> tracks, bool allLoaded)? success,
     TResult Function(String message)? error,
   }) {
     return initial?.call();
@@ -177,7 +175,7 @@ class _$TrackStateInitial implements TrackStateInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Track> tracks)? success,
+    TResult Function(List<Track> tracks, bool allLoaded)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -190,10 +188,10 @@ class _$TrackStateInitial implements TrackStateInitial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TrackStateInitial value) initial,
-    required TResult Function(TrackStateLoading value) loading,
-    required TResult Function(TrackStateSuccess value) success,
-    required TResult Function(TrackStateError value) error,
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Error value) error,
   }) {
     return initial(this);
   }
@@ -201,10 +199,10 @@ class _$TrackStateInitial implements TrackStateInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TrackStateInitial value)? initial,
-    TResult Function(TrackStateLoading value)? loading,
-    TResult Function(TrackStateSuccess value)? success,
-    TResult Function(TrackStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) {
     return initial?.call(this);
   }
@@ -212,10 +210,10 @@ class _$TrackStateInitial implements TrackStateInitial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TrackStateInitial value)? initial,
-    TResult Function(TrackStateLoading value)? loading,
-    TResult Function(TrackStateSuccess value)? success,
-    TResult Function(TrackStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -225,33 +223,30 @@ class _$TrackStateInitial implements TrackStateInitial {
   }
 }
 
-abstract class TrackStateInitial implements TrackState {
-  const factory TrackStateInitial() = _$TrackStateInitial;
+abstract class _Initial implements TrackState {
+  const factory _Initial() = _$_Initial;
 }
 
 /// @nodoc
-abstract class $TrackStateLoadingCopyWith<$Res> {
-  factory $TrackStateLoadingCopyWith(
-          TrackStateLoading value, $Res Function(TrackStateLoading) then) =
-      _$TrackStateLoadingCopyWithImpl<$Res>;
+abstract class _$LoadingCopyWith<$Res> {
+  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
+      __$LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$TrackStateLoadingCopyWithImpl<$Res>
-    extends _$TrackStateCopyWithImpl<$Res>
-    implements $TrackStateLoadingCopyWith<$Res> {
-  _$TrackStateLoadingCopyWithImpl(
-      TrackStateLoading _value, $Res Function(TrackStateLoading) _then)
-      : super(_value, (v) => _then(v as TrackStateLoading));
+class __$LoadingCopyWithImpl<$Res> extends _$TrackStateCopyWithImpl<$Res>
+    implements _$LoadingCopyWith<$Res> {
+  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
+      : super(_value, (v) => _then(v as _Loading));
 
   @override
-  TrackStateLoading get _value => super._value as TrackStateLoading;
+  _Loading get _value => super._value as _Loading;
 }
 
 /// @nodoc
 
-class _$TrackStateLoading implements TrackStateLoading {
-  const _$TrackStateLoading();
+class _$_Loading implements _Loading {
+  const _$_Loading();
 
   @override
   String toString() {
@@ -261,7 +256,7 @@ class _$TrackStateLoading implements TrackStateLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is TrackStateLoading);
+        (other.runtimeType == runtimeType && other is _Loading);
   }
 
   @override
@@ -272,7 +267,7 @@ class _$TrackStateLoading implements TrackStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Track> tracks) success,
+    required TResult Function(List<Track> tracks, bool allLoaded) success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -283,7 +278,7 @@ class _$TrackStateLoading implements TrackStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Track> tracks)? success,
+    TResult Function(List<Track> tracks, bool allLoaded)? success,
     TResult Function(String message)? error,
   }) {
     return loading?.call();
@@ -294,7 +289,7 @@ class _$TrackStateLoading implements TrackStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Track> tracks)? success,
+    TResult Function(List<Track> tracks, bool allLoaded)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -307,10 +302,10 @@ class _$TrackStateLoading implements TrackStateLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TrackStateInitial value) initial,
-    required TResult Function(TrackStateLoading value) loading,
-    required TResult Function(TrackStateSuccess value) success,
-    required TResult Function(TrackStateError value) error,
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Error value) error,
   }) {
     return loading(this);
   }
@@ -318,10 +313,10 @@ class _$TrackStateLoading implements TrackStateLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TrackStateInitial value)? initial,
-    TResult Function(TrackStateLoading value)? loading,
-    TResult Function(TrackStateSuccess value)? success,
-    TResult Function(TrackStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) {
     return loading?.call(this);
   }
@@ -329,10 +324,10 @@ class _$TrackStateLoading implements TrackStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TrackStateInitial value)? initial,
-    TResult Function(TrackStateLoading value)? loading,
-    TResult Function(TrackStateSuccess value)? success,
-    TResult Function(TrackStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -342,81 +337,88 @@ class _$TrackStateLoading implements TrackStateLoading {
   }
 }
 
-abstract class TrackStateLoading implements TrackState {
-  const factory TrackStateLoading() = _$TrackStateLoading;
+abstract class _Loading implements TrackState {
+  const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
-abstract class $TrackStateSuccessCopyWith<$Res> {
-  factory $TrackStateSuccessCopyWith(
-          TrackStateSuccess value, $Res Function(TrackStateSuccess) then) =
-      _$TrackStateSuccessCopyWithImpl<$Res>;
-  $Res call({List<Track> tracks});
+abstract class _$SuccessCopyWith<$Res> {
+  factory _$SuccessCopyWith(_Success value, $Res Function(_Success) then) =
+      __$SuccessCopyWithImpl<$Res>;
+  $Res call({List<Track> tracks, bool allLoaded});
 }
 
 /// @nodoc
-class _$TrackStateSuccessCopyWithImpl<$Res>
-    extends _$TrackStateCopyWithImpl<$Res>
-    implements $TrackStateSuccessCopyWith<$Res> {
-  _$TrackStateSuccessCopyWithImpl(
-      TrackStateSuccess _value, $Res Function(TrackStateSuccess) _then)
-      : super(_value, (v) => _then(v as TrackStateSuccess));
+class __$SuccessCopyWithImpl<$Res> extends _$TrackStateCopyWithImpl<$Res>
+    implements _$SuccessCopyWith<$Res> {
+  __$SuccessCopyWithImpl(_Success _value, $Res Function(_Success) _then)
+      : super(_value, (v) => _then(v as _Success));
 
   @override
-  TrackStateSuccess get _value => super._value as TrackStateSuccess;
+  _Success get _value => super._value as _Success;
 
   @override
   $Res call({
     Object? tracks = freezed,
+    Object? allLoaded = freezed,
   }) {
-    return _then(TrackStateSuccess(
+    return _then(_Success(
       tracks == freezed
           ? _value.tracks
           : tracks // ignore: cast_nullable_to_non_nullable
               as List<Track>,
+      allLoaded == freezed
+          ? _value.allLoaded
+          : allLoaded // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$TrackStateSuccess implements TrackStateSuccess {
-  const _$TrackStateSuccess(this.tracks);
+class _$_Success implements _Success {
+  const _$_Success(this.tracks, this.allLoaded);
 
   @override
   final List<Track> tracks;
+  @override
+  final bool allLoaded;
 
   @override
   String toString() {
-    return 'TrackState.success(tracks: $tracks)';
+    return 'TrackState.success(tracks: $tracks, allLoaded: $allLoaded)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is TrackStateSuccess &&
-            const DeepCollectionEquality().equals(other.tracks, tracks));
+            other is _Success &&
+            const DeepCollectionEquality().equals(other.tracks, tracks) &&
+            const DeepCollectionEquality().equals(other.allLoaded, allLoaded));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(tracks));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(tracks),
+      const DeepCollectionEquality().hash(allLoaded));
 
   @JsonKey(ignore: true)
   @override
-  $TrackStateSuccessCopyWith<TrackStateSuccess> get copyWith =>
-      _$TrackStateSuccessCopyWithImpl<TrackStateSuccess>(this, _$identity);
+  _$SuccessCopyWith<_Success> get copyWith =>
+      __$SuccessCopyWithImpl<_Success>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Track> tracks) success,
+    required TResult Function(List<Track> tracks, bool allLoaded) success,
     required TResult Function(String message) error,
   }) {
-    return success(tracks);
+    return success(tracks, allLoaded);
   }
 
   @override
@@ -424,10 +426,10 @@ class _$TrackStateSuccess implements TrackStateSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Track> tracks)? success,
+    TResult Function(List<Track> tracks, bool allLoaded)? success,
     TResult Function(String message)? error,
   }) {
-    return success?.call(tracks);
+    return success?.call(tracks, allLoaded);
   }
 
   @override
@@ -435,12 +437,12 @@ class _$TrackStateSuccess implements TrackStateSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Track> tracks)? success,
+    TResult Function(List<Track> tracks, bool allLoaded)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(tracks);
+      return success(tracks, allLoaded);
     }
     return orElse();
   }
@@ -448,10 +450,10 @@ class _$TrackStateSuccess implements TrackStateSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TrackStateInitial value) initial,
-    required TResult Function(TrackStateLoading value) loading,
-    required TResult Function(TrackStateSuccess value) success,
-    required TResult Function(TrackStateError value) error,
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Error value) error,
   }) {
     return success(this);
   }
@@ -459,10 +461,10 @@ class _$TrackStateSuccess implements TrackStateSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TrackStateInitial value)? initial,
-    TResult Function(TrackStateLoading value)? loading,
-    TResult Function(TrackStateSuccess value)? success,
-    TResult Function(TrackStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) {
     return success?.call(this);
   }
@@ -470,10 +472,10 @@ class _$TrackStateSuccess implements TrackStateSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TrackStateInitial value)? initial,
-    TResult Function(TrackStateLoading value)? loading,
-    TResult Function(TrackStateSuccess value)? success,
-    TResult Function(TrackStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -483,38 +485,37 @@ class _$TrackStateSuccess implements TrackStateSuccess {
   }
 }
 
-abstract class TrackStateSuccess implements TrackState {
-  const factory TrackStateSuccess(List<Track> tracks) = _$TrackStateSuccess;
+abstract class _Success implements TrackState {
+  const factory _Success(List<Track> tracks, bool allLoaded) = _$_Success;
 
   List<Track> get tracks;
+  bool get allLoaded;
   @JsonKey(ignore: true)
-  $TrackStateSuccessCopyWith<TrackStateSuccess> get copyWith =>
+  _$SuccessCopyWith<_Success> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TrackStateErrorCopyWith<$Res> {
-  factory $TrackStateErrorCopyWith(
-          TrackStateError value, $Res Function(TrackStateError) then) =
-      _$TrackStateErrorCopyWithImpl<$Res>;
+abstract class _$ErrorCopyWith<$Res> {
+  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
+      __$ErrorCopyWithImpl<$Res>;
   $Res call({String message});
 }
 
 /// @nodoc
-class _$TrackStateErrorCopyWithImpl<$Res> extends _$TrackStateCopyWithImpl<$Res>
-    implements $TrackStateErrorCopyWith<$Res> {
-  _$TrackStateErrorCopyWithImpl(
-      TrackStateError _value, $Res Function(TrackStateError) _then)
-      : super(_value, (v) => _then(v as TrackStateError));
+class __$ErrorCopyWithImpl<$Res> extends _$TrackStateCopyWithImpl<$Res>
+    implements _$ErrorCopyWith<$Res> {
+  __$ErrorCopyWithImpl(_Error _value, $Res Function(_Error) _then)
+      : super(_value, (v) => _then(v as _Error));
 
   @override
-  TrackStateError get _value => super._value as TrackStateError;
+  _Error get _value => super._value as _Error;
 
   @override
   $Res call({
     Object? message = freezed,
   }) {
-    return _then(TrackStateError(
+    return _then(_Error(
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -525,8 +526,8 @@ class _$TrackStateErrorCopyWithImpl<$Res> extends _$TrackStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TrackStateError implements TrackStateError {
-  const _$TrackStateError(this.message);
+class _$_Error implements _Error {
+  const _$_Error(this.message);
 
   @override
   final String message;
@@ -540,7 +541,7 @@ class _$TrackStateError implements TrackStateError {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is TrackStateError &&
+            other is _Error &&
             const DeepCollectionEquality().equals(other.message, message));
   }
 
@@ -550,15 +551,15 @@ class _$TrackStateError implements TrackStateError {
 
   @JsonKey(ignore: true)
   @override
-  $TrackStateErrorCopyWith<TrackStateError> get copyWith =>
-      _$TrackStateErrorCopyWithImpl<TrackStateError>(this, _$identity);
+  _$ErrorCopyWith<_Error> get copyWith =>
+      __$ErrorCopyWithImpl<_Error>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<Track> tracks) success,
+    required TResult Function(List<Track> tracks, bool allLoaded) success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -569,7 +570,7 @@ class _$TrackStateError implements TrackStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Track> tracks)? success,
+    TResult Function(List<Track> tracks, bool allLoaded)? success,
     TResult Function(String message)? error,
   }) {
     return error?.call(message);
@@ -580,7 +581,7 @@ class _$TrackStateError implements TrackStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<Track> tracks)? success,
+    TResult Function(List<Track> tracks, bool allLoaded)? success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -593,10 +594,10 @@ class _$TrackStateError implements TrackStateError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(TrackStateInitial value) initial,
-    required TResult Function(TrackStateLoading value) loading,
-    required TResult Function(TrackStateSuccess value) success,
-    required TResult Function(TrackStateError value) error,
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_Error value) error,
   }) {
     return error(this);
   }
@@ -604,10 +605,10 @@ class _$TrackStateError implements TrackStateError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(TrackStateInitial value)? initial,
-    TResult Function(TrackStateLoading value)? loading,
-    TResult Function(TrackStateSuccess value)? success,
-    TResult Function(TrackStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
   }) {
     return error?.call(this);
   }
@@ -615,10 +616,10 @@ class _$TrackStateError implements TrackStateError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(TrackStateInitial value)? initial,
-    TResult Function(TrackStateLoading value)? loading,
-    TResult Function(TrackStateSuccess value)? success,
-    TResult Function(TrackStateError value)? error,
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -628,11 +629,10 @@ class _$TrackStateError implements TrackStateError {
   }
 }
 
-abstract class TrackStateError implements TrackState {
-  const factory TrackStateError(String message) = _$TrackStateError;
+abstract class _Error implements TrackState {
+  const factory _Error(String message) = _$_Error;
 
   String get message;
   @JsonKey(ignore: true)
-  $TrackStateErrorCopyWith<TrackStateError> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
 }
