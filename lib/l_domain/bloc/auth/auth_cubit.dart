@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:muzzify/core/errors/exceptions.dart';
+import '/core/errors/error_object.dart';
 
 import '/l_domain/repositories/i_auth_repository.dart';
 
@@ -27,11 +29,10 @@ class AuthCubit extends Cubit<AuthState> {
       if (result != null) {
         emit(AuthState.success());
       } else {
-        emit(AuthState.error('cubit error'));
+        throw AuthException();
       }
     } catch (e) {
-      print(e.toString());
-      emit(AuthState.error(e.toString()));
+      emit(AuthState.error(ErrorObject(e)));
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import '/core/errors/error_object.dart';
 
 import '/l_domain/repositories/i_artist_repository.dart';
 import '/models/artist.dart';
@@ -30,7 +31,7 @@ class ArtistCubit extends Cubit<ArtistState> {
       }
       emit(ArtistState.topSuccess(_topArtists, _topArtistsLoadedAll));
     } catch (e) {
-      emit(ArtistState.error(e.toString()));
+      emit(ArtistState.error(ErrorObject(e)));
     }
   }
 
@@ -59,7 +60,7 @@ class ArtistCubit extends Cubit<ArtistState> {
       }
       emit(ArtistState.searchSuccess(_searchArtists, _searchLoadedAll));
     } catch (e) {
-      emit(ArtistState.error(e.toString()));
+      emit(ArtistState.error(ErrorObject(e)));
     }
   }
 }

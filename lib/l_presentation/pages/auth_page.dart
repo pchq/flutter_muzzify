@@ -31,20 +31,31 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     final isRegistration = _authBloc.isRegistration;
 
-    return BlocBuilder<AuthCubit, AuthState>(
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          error: (error) {
+            ScaffoldMessenger.of(context)
+              ..removeCurrentSnackBar()
+              ..showSnackBar(SnackBar(content: Text(error.message)));
+          },
+        );
+      },
       builder: (context, state) {
-        state.whenOrNull(success: () {
-          if (!_authRedirected) {
-            _authRedirected = true;
-            final StackRouter router = AutoRouter.of(context);
+        state.whenOrNull(
+          success: () {
+            if (!_authRedirected) {
+              _authRedirected = true;
+              final StackRouter router = AutoRouter.of(context);
 
-            if (router.canNavigateBack && router.current.parent?.name != 'CollectionTab') {
-              router.navigateBack();
-            } else {
-              router.replace(CollectionRoute());
+              if (router.canNavigateBack && router.current.parent?.name != 'CollectionTab') {
+                router.navigateBack();
+              } else {
+                router.replace(CollectionRoute());
+              }
             }
-          }
-        });
+          },
+        );
         state.maybeWhen(
           loading: () {
             _isLoading = true;

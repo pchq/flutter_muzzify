@@ -15,13 +15,8 @@ class ArtistRepository implements IArtistRepository {
     int limit = AppConfig.pagenArtists,
     int page = 0,
   }) async {
-    try {
-      final remoteData = remoteDatasource.loadTopArtists(limit, page);
-      return remoteData;
-    } catch (e) {
-      print('err: $e');
-      throw Exception();
-    }
+    final remoteData = remoteDatasource.loadTopArtists(limit, page);
+    return remoteData;
   }
 
   @override
@@ -30,12 +25,7 @@ class ArtistRepository implements IArtistRepository {
     int limit = AppConfig.pagenArtists,
     int page = 0,
   }) async {
-    try {
-      final remoteData = remoteDatasource.searchArtists(query, limit, page);
-      return remoteData;
-    } catch (e) {
-      print('err: $e');
-      throw Exception();
-    }
+    final remoteData = remoteDatasource.searchArtists(query, limit, page);
+    return remoteData;
   }
 }

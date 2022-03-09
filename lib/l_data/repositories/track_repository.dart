@@ -16,12 +16,7 @@ class TrackRepository implements ITrackRepository {
     int limit = AppConfig.pagenTracks,
     int page = 0,
   }) async {
-    try {
-      final remoteData = remoteDatasource.loadTracks(artistId, limit, page);
-      return remoteData;
-    } catch (e) {
-      print('err: $e');
-      throw Exception();
-    }
+    final remoteData = remoteDatasource.loadTracks(artistId, limit, page);
+    return remoteData;
   }
 }

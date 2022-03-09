@@ -41,7 +41,16 @@ class _ArtistsPageState extends State<ArtistsPage> {
   Widget build(BuildContext context) {
     List<Artist> artists = [];
 
-    return BlocBuilder<ArtistCubit, ArtistState>(
+    return BlocConsumer<ArtistCubit, ArtistState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          error: (error) {
+            ScaffoldMessenger.of(context)
+              ..removeCurrentSnackBar()
+              ..showSnackBar(SnackBar(content: Text(error.message)));
+          },
+        );
+      },
       builder: (context, state) {
         state.whenOrNull(
           initial: () {
@@ -57,9 +66,6 @@ class _ArtistsPageState extends State<ArtistsPage> {
           },
           error: (error) {
             _isLoading = false;
-
-            // ToDo
-            print('=== ArtistCubit UI error: $error');
           },
         );
 

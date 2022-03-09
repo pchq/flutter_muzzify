@@ -57,7 +57,16 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     List<Artist> artists = [];
 
-    return BlocBuilder<ArtistCubit, ArtistState>(
+    return BlocConsumer<ArtistCubit, ArtistState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          error: (error) {
+            ScaffoldMessenger.of(context)
+              ..removeCurrentSnackBar()
+              ..showSnackBar(SnackBar(content: Text(error.message)));
+          },
+        );
+      },
       builder: (context, state) {
         state.whenOrNull(
           initial: () {

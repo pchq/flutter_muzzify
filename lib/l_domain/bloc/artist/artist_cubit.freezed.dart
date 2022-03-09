@@ -40,9 +40,9 @@ class _$ArtistStateTearOff {
     );
   }
 
-  _Error error(String message) {
+  _Error error(ErrorObject error) {
     return _Error(
-      message,
+      error,
     );
   }
 }
@@ -59,7 +59,7 @@ mixin _$ArtistState {
     required TResult Function(List<Artist> artists, bool allLoaded) topSuccess,
     required TResult Function(List<Artist> artists, bool allLoaded)
         searchSuccess,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorObject error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,7 +68,7 @@ mixin _$ArtistState {
     TResult Function()? loading,
     TResult Function(List<Artist> artists, bool allLoaded)? topSuccess,
     TResult Function(List<Artist> artists, bool allLoaded)? searchSuccess,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -77,7 +77,7 @@ mixin _$ArtistState {
     TResult Function()? loading,
     TResult Function(List<Artist> artists, bool allLoaded)? topSuccess,
     TResult Function(List<Artist> artists, bool allLoaded)? searchSuccess,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -170,7 +170,7 @@ class _$_Initial implements _Initial {
     required TResult Function(List<Artist> artists, bool allLoaded) topSuccess,
     required TResult Function(List<Artist> artists, bool allLoaded)
         searchSuccess,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorObject error) error,
   }) {
     return initial();
   }
@@ -182,7 +182,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function(List<Artist> artists, bool allLoaded)? topSuccess,
     TResult Function(List<Artist> artists, bool allLoaded)? searchSuccess,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
   }) {
     return initial?.call();
   }
@@ -194,7 +194,7 @@ class _$_Initial implements _Initial {
     TResult Function()? loading,
     TResult Function(List<Artist> artists, bool allLoaded)? topSuccess,
     TResult Function(List<Artist> artists, bool allLoaded)? searchSuccess,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -291,7 +291,7 @@ class _$_Loading implements _Loading {
     required TResult Function(List<Artist> artists, bool allLoaded) topSuccess,
     required TResult Function(List<Artist> artists, bool allLoaded)
         searchSuccess,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorObject error) error,
   }) {
     return loading();
   }
@@ -303,7 +303,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function(List<Artist> artists, bool allLoaded)? topSuccess,
     TResult Function(List<Artist> artists, bool allLoaded)? searchSuccess,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
   }) {
     return loading?.call();
   }
@@ -315,7 +315,7 @@ class _$_Loading implements _Loading {
     TResult Function()? loading,
     TResult Function(List<Artist> artists, bool allLoaded)? topSuccess,
     TResult Function(List<Artist> artists, bool allLoaded)? searchSuccess,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -448,7 +448,7 @@ class _$_TopSuccess implements _TopSuccess {
     required TResult Function(List<Artist> artists, bool allLoaded) topSuccess,
     required TResult Function(List<Artist> artists, bool allLoaded)
         searchSuccess,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorObject error) error,
   }) {
     return topSuccess(artists, allLoaded);
   }
@@ -460,7 +460,7 @@ class _$_TopSuccess implements _TopSuccess {
     TResult Function()? loading,
     TResult Function(List<Artist> artists, bool allLoaded)? topSuccess,
     TResult Function(List<Artist> artists, bool allLoaded)? searchSuccess,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
   }) {
     return topSuccess?.call(artists, allLoaded);
   }
@@ -472,7 +472,7 @@ class _$_TopSuccess implements _TopSuccess {
     TResult Function()? loading,
     TResult Function(List<Artist> artists, bool allLoaded)? topSuccess,
     TResult Function(List<Artist> artists, bool allLoaded)? searchSuccess,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
     required TResult orElse(),
   }) {
     if (topSuccess != null) {
@@ -612,7 +612,7 @@ class _$_SearchSuccess implements _SearchSuccess {
     required TResult Function(List<Artist> artists, bool allLoaded) topSuccess,
     required TResult Function(List<Artist> artists, bool allLoaded)
         searchSuccess,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorObject error) error,
   }) {
     return searchSuccess(artists, allLoaded);
   }
@@ -624,7 +624,7 @@ class _$_SearchSuccess implements _SearchSuccess {
     TResult Function()? loading,
     TResult Function(List<Artist> artists, bool allLoaded)? topSuccess,
     TResult Function(List<Artist> artists, bool allLoaded)? searchSuccess,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
   }) {
     return searchSuccess?.call(artists, allLoaded);
   }
@@ -636,7 +636,7 @@ class _$_SearchSuccess implements _SearchSuccess {
     TResult Function()? loading,
     TResult Function(List<Artist> artists, bool allLoaded)? topSuccess,
     TResult Function(List<Artist> artists, bool allLoaded)? searchSuccess,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
     required TResult orElse(),
   }) {
     if (searchSuccess != null) {
@@ -701,7 +701,7 @@ abstract class _SearchSuccess implements ArtistState {
 abstract class _$ErrorCopyWith<$Res> {
   factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
       __$ErrorCopyWithImpl<$Res>;
-  $Res call({String message});
+  $Res call({ErrorObject error});
 }
 
 /// @nodoc
@@ -715,13 +715,13 @@ class __$ErrorCopyWithImpl<$Res> extends _$ArtistStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? message = freezed,
+    Object? error = freezed,
   }) {
     return _then(_Error(
-      message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ErrorObject,
     ));
   }
 }
@@ -729,14 +729,14 @@ class __$ErrorCopyWithImpl<$Res> extends _$ArtistStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Error implements _Error {
-  const _$_Error(this.message);
+  const _$_Error(this.error);
 
   @override
-  final String message;
+  final ErrorObject error;
 
   @override
   String toString() {
-    return 'ArtistState.error(message: $message)';
+    return 'ArtistState.error(error: $error)';
   }
 
   @override
@@ -744,12 +744,12 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Error &&
-            const DeepCollectionEquality().equals(other.message, message));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -764,9 +764,9 @@ class _$_Error implements _Error {
     required TResult Function(List<Artist> artists, bool allLoaded) topSuccess,
     required TResult Function(List<Artist> artists, bool allLoaded)
         searchSuccess,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorObject error) error,
   }) {
-    return error(message);
+    return error(this.error);
   }
 
   @override
@@ -776,9 +776,9 @@ class _$_Error implements _Error {
     TResult Function()? loading,
     TResult Function(List<Artist> artists, bool allLoaded)? topSuccess,
     TResult Function(List<Artist> artists, bool allLoaded)? searchSuccess,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
   }) {
-    return error?.call(message);
+    return error?.call(this.error);
   }
 
   @override
@@ -788,11 +788,11 @@ class _$_Error implements _Error {
     TResult Function()? loading,
     TResult Function(List<Artist> artists, bool allLoaded)? topSuccess,
     TResult Function(List<Artist> artists, bool allLoaded)? searchSuccess,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(message);
+      return error(this.error);
     }
     return orElse();
   }
@@ -839,9 +839,9 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements ArtistState {
-  const factory _Error(String message) = _$_Error;
+  const factory _Error(ErrorObject error) = _$_Error;
 
-  String get message;
+  ErrorObject get error;
   @JsonKey(ignore: true)
   _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
 }

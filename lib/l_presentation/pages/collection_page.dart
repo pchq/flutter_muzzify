@@ -71,7 +71,9 @@ class _CollectionPageState extends State<CollectionPage> {
         stream: _collectionStream,
         builder: (BuildContext context, AsyncSnapshot<List<Track>> snapshot) {
           if (snapshot.hasError) {
-            // ToDo: Error handler
+            ScaffoldMessenger.of(context)
+              ..removeCurrentSnackBar()
+              ..showSnackBar(SnackBar(content: Text('Ошибка')));
           }
           return SingleChildScrollView(
             child: Column(

@@ -33,9 +33,9 @@ class _$TrackStateTearOff {
     );
   }
 
-  _Error error(String message) {
+  _Error error(ErrorObject error) {
     return _Error(
-      message,
+      error,
     );
   }
 }
@@ -50,7 +50,7 @@ mixin _$TrackState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<Track> tracks, bool allLoaded) success,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorObject error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,7 +58,7 @@ mixin _$TrackState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Track> tracks, bool allLoaded)? success,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,7 +66,7 @@ mixin _$TrackState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Track> tracks, bool allLoaded)? success,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -154,7 +154,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<Track> tracks, bool allLoaded) success,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorObject error) error,
   }) {
     return initial();
   }
@@ -165,7 +165,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Track> tracks, bool allLoaded)? success,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
   }) {
     return initial?.call();
   }
@@ -176,7 +176,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Track> tracks, bool allLoaded)? success,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -268,7 +268,7 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<Track> tracks, bool allLoaded) success,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorObject error) error,
   }) {
     return loading();
   }
@@ -279,7 +279,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Track> tracks, bool allLoaded)? success,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
   }) {
     return loading?.call();
   }
@@ -290,7 +290,7 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Track> tracks, bool allLoaded)? success,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -416,7 +416,7 @@ class _$_Success implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<Track> tracks, bool allLoaded) success,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorObject error) error,
   }) {
     return success(tracks, allLoaded);
   }
@@ -427,7 +427,7 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Track> tracks, bool allLoaded)? success,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
   }) {
     return success?.call(tracks, allLoaded);
   }
@@ -438,7 +438,7 @@ class _$_Success implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Track> tracks, bool allLoaded)? success,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -499,7 +499,7 @@ abstract class _Success implements TrackState {
 abstract class _$ErrorCopyWith<$Res> {
   factory _$ErrorCopyWith(_Error value, $Res Function(_Error) then) =
       __$ErrorCopyWithImpl<$Res>;
-  $Res call({String message});
+  $Res call({ErrorObject error});
 }
 
 /// @nodoc
@@ -513,13 +513,13 @@ class __$ErrorCopyWithImpl<$Res> extends _$TrackStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? message = freezed,
+    Object? error = freezed,
   }) {
     return _then(_Error(
-      message == freezed
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ErrorObject,
     ));
   }
 }
@@ -527,14 +527,14 @@ class __$ErrorCopyWithImpl<$Res> extends _$TrackStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Error implements _Error {
-  const _$_Error(this.message);
+  const _$_Error(this.error);
 
   @override
-  final String message;
+  final ErrorObject error;
 
   @override
   String toString() {
-    return 'TrackState.error(message: $message)';
+    return 'TrackState.error(error: $error)';
   }
 
   @override
@@ -542,12 +542,12 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Error &&
-            const DeepCollectionEquality().equals(other.message, message));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -560,9 +560,9 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<Track> tracks, bool allLoaded) success,
-    required TResult Function(String message) error,
+    required TResult Function(ErrorObject error) error,
   }) {
-    return error(message);
+    return error(this.error);
   }
 
   @override
@@ -571,9 +571,9 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Track> tracks, bool allLoaded)? success,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
   }) {
-    return error?.call(message);
+    return error?.call(this.error);
   }
 
   @override
@@ -582,11 +582,11 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<Track> tracks, bool allLoaded)? success,
-    TResult Function(String message)? error,
+    TResult Function(ErrorObject error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(message);
+      return error(this.error);
     }
     return orElse();
   }
@@ -630,9 +630,9 @@ class _$_Error implements _Error {
 }
 
 abstract class _Error implements TrackState {
-  const factory _Error(String message) = _$_Error;
+  const factory _Error(ErrorObject error) = _$_Error;
 
-  String get message;
+  ErrorObject get error;
   @JsonKey(ignore: true)
   _$ErrorCopyWith<_Error> get copyWith => throw _privateConstructorUsedError;
 }

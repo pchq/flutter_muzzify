@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:muzzify/core/errors/exceptions.dart';
 
 import '/models/track.dart';
 import '/models/artist.dart';
@@ -10,61 +11,67 @@ class RemoteDatasource {
     required this.dio,
   });
 
-  Future<List<Artist>> loadTopArtists(int limit, int page) async {
+  /// точка входа запросов
+  static const _endpoint = 'https://api.napster.com/v2.2/';
+
+  /// response с обработкой ошибок
+  Future<dynamic> _getResponseData(String uri) async {
     try {
-      final response = await dio.get(
-        'https://api.napster.com/v2.2/artists/top?limit=$limit&offset=${page * limit}&apikey=${AppConfig.napsterApiKey}',
-      );
+      final response = await dio.get('$_endpoint$uri&apikey=${AppConfig.napsterApiKey}');
 
       if (response.statusCode == 200) {
-        final List<Artist> artists =
-            response.data['artists'].map<Artist>((item) => Artist.fromJson(item)).toList();
-        return artists;
+        return response.data;
       } else {
-        throw Exception('err: response.statusCode = ${response.statusCode}');
+        throw ServerException();
       }
     } catch (e) {
-      print('err: $e');
-      throw Exception();
+      if (e is ServerException) {
+        rethrow;
+      } else {
+        throw NoConnectionException();
+      }
     }
   }
 
+  /// топ артисты
+  Future<List<Artist>> loadTopArtists(int limit, int page) async {
+    final data = await _getResponseData('artists/top?limit=$limit&offset=${page * limit}');
+
+    try {
+      final List<Artist> artists =
+          data['artists'].map<Artist>((item) => Artist.fromJson(item)).toList();
+      return artists;
+    } catch (e) {
+      throw DataParsingException();
+    }
+  }
+
+  /// поиск артистов
   Future<List<Artist>> searchArtists(String query, int limit, int page) async {
     if (query.isEmpty) return [];
-    try {
-      final response = await dio.get(
-        'https://api.napster.com/v2.2/search?query=$query&type=artist&per_type_limit=$limit&offset=${page * limit}&apikey=${AppConfig.napsterApiKey}',
-      );
 
-      if (response.statusCode == 200) {
-        final List<Artist> artists = response.data['search']['data']['artists']
-            .map<Artist>((item) => Artist.fromJson(item))
-            .toList();
-        return artists;
-      } else {
-        throw Exception('err: response.statusCode = ${response.statusCode}');
-      }
+    final data = await _getResponseData(
+        'search?query=$query&type=artist&per_type_limit=$limit&offset=${page * limit}');
+
+    try {
+      final List<Artist> artists =
+          data['search']['data']['artists'].map<Artist>((item) => Artist.fromJson(item)).toList();
+      return artists;
     } catch (e) {
-      print('err: $e');
-      throw Exception();
+      throw DataParsingException();
     }
   }
 
+  /// треки артиста
   Future<List<Track>> loadTracks(String artistId, int limit, int page) async {
-    try {
-      final response = await dio.get(
-          'https://api.napster.com/v2.2/artists/$artistId/tracks/top?limit=$limit&offset=${page * limit}&apikey=${AppConfig.napsterApiKey}');
+    final data =
+        await _getResponseData('artists/$artistId/tracks/top?limit=$limit&offset=${page * limit}');
 
-      if (response.statusCode == 200) {
-        final List<Track> tracks =
-            response.data['tracks'].map<Track>((item) => Track.fromJson(item)).toList();
-        return tracks;
-      } else {
-        throw Exception('err: response.statusCode = ${response.statusCode}');
-      }
+    try {
+      final List<Track> tracks = data['tracks'].map<Track>((item) => Track.fromJson(item)).toList();
+      return tracks;
     } catch (e) {
-      print('err: $e');
-      throw Exception();
+      throw DataParsingException();
     }
   }
 }

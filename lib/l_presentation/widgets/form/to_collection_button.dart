@@ -43,7 +43,7 @@ class _ToCollectionButtonState extends State<ToCollectionButton> {
           loading: () {
             _isLoading = true;
           },
-          error: () {
+          error: (error) {
             _isLoading = false;
           },
         );

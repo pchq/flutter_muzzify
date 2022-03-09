@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import '/core/errors/error_object.dart';
 
 import '/l_domain/repositories/i_collection_repository.dart';
 import '/models/track.dart';
@@ -21,7 +22,7 @@ class CollectionCubit extends Cubit<CollectionState> {
       await collectionRepository.add(track);
       emit(CollectionState.success(true));
     } catch (e) {
-      emit(CollectionState.error());
+      emit(CollectionState.error(ErrorObject(e)));
     }
   }
 
@@ -32,7 +33,7 @@ class CollectionCubit extends Cubit<CollectionState> {
       await collectionRepository.remove(track);
       emit(CollectionState.success(false));
     } catch (e) {
-      emit(CollectionState.error());
+      emit(CollectionState.error(ErrorObject(e)));
     }
   }
 
@@ -43,7 +44,7 @@ class CollectionCubit extends Cubit<CollectionState> {
       final inCollection = await collectionRepository.checkTrack(track);
       emit(CollectionState.success(inCollection));
     } catch (e) {
-      emit(CollectionState.error());
+      emit(CollectionState.error(ErrorObject(e)));
     }
   }
 

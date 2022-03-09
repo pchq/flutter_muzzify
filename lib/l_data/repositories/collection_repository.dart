@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:muzzify/core/errors/exceptions.dart';
 
 import '/l_domain/repositories/i_collection_repository.dart';
 import '/models/track.dart';
@@ -15,7 +16,7 @@ class CollectionRepository implements ICollectionRepository {
   }
 
   CollectionReference get _tracksDb {
-    if (firebaseAuth.currentUser == null) throw FirebaseAuthException(code: 'Unauth');
+    if (firebaseAuth.currentUser == null) throw AuthException(code: AuthExceptionCode.noAuth);
 
     final curUser = firebaseAuth.currentUser!;
     return FirebaseFirestore.instance.collection('users').doc(curUser.uid).collection('tracks');

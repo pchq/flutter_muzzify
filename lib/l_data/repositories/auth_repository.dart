@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
+import '/core/errors/exceptions.dart';
 import '/l_domain/repositories/i_auth_repository.dart';
 
 class AuthRepository implements IAuthRepository {
@@ -17,7 +17,7 @@ class AuthRepository implements IAuthRepository {
   @override
   User get user {
     if (firebaseAuth.currentUser == null) {
-      throw Exception();
+      throw AuthException(code: AuthExceptionCode.noAuth);
     } else {
       return firebaseAuth.currentUser!;
     }
@@ -43,11 +43,12 @@ class AuthRepository implements IAuthRepository {
     try {
       var result = await firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
       return result.user?.uid;
-    } on FirebaseAuthException {
-      rethrow;
     } catch (e) {
-      print(e);
-      throw Exception(e);
+      if (e is FirebaseAuthException) {
+        rethrow;
+      } else {
+        throw AuthException();
+      }
     }
   }
 
@@ -57,11 +58,12 @@ class AuthRepository implements IAuthRepository {
       var result =
           await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       return result.user?.uid;
-    } on FirebaseAuthException {
-      rethrow;
     } catch (e) {
-      print(e);
-      throw Exception(e);
+      if (e is FirebaseAuthException) {
+        rethrow;
+      } else {
+        throw AuthException();
+      }
     }
   }
 
@@ -69,11 +71,12 @@ class AuthRepository implements IAuthRepository {
   Future<void> logout() async {
     try {
       await firebaseAuth.signOut();
-    } on FirebaseAuthException {
-      rethrow;
     } catch (e) {
-      print(e);
-      throw Exception(e);
+      if (e is FirebaseAuthException) {
+        throw AuthException(error: e);
+      } else {
+        throw Exception(e);
+      }
     }
   }
 }

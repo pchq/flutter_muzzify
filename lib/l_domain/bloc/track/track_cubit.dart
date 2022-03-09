@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import '/core/errors/error_object.dart';
 import '/l_domain/repositories/i_track_repository.dart';
 import '/models/track.dart';
 
@@ -34,7 +35,7 @@ class TrackCubit extends Cubit<TrackState> {
       }
       emit(TrackState.success(_artistTracks, _loadedAll));
     } catch (e) {
-      emit(TrackState.error(e.toString()));
+      emit(TrackState.error(ErrorObject(e)));
     }
   }
 }
