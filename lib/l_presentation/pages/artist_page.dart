@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import '/core/cover_config.dart';
+import '/l_presentation/widgets/cover_image.dart';
 import '/l_presentation/widgets/lists/tracks_list.dart';
 import '/l_presentation/app_theme.dart';
 import '/models/artist.dart';
@@ -34,16 +36,9 @@ class ArtistPage extends StatelessWidget {
               title: Text(artist.name),
               background: Stack(
                 children: [
-                  Image.network(
-                    // ToDo: refuck hardcode
-                    'https://api.napster.com/imageserver/v2/artists/${artist.id}/images/633x422.jpg',
-                    fit: BoxFit.cover,
+                  CoverImage(
+                    CoversConfig.path(Cover.artistLg, artist.id),
                     height: imgHeight,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        color: AppTheme.colorGreyMiddle,
-                      );
-                    },
                   ),
                   Container(
                     height: imgHeight,
@@ -65,6 +60,7 @@ class ArtistPage extends StatelessWidget {
                 ],
               ),
             ),
+            // ToDo: wtf 25?
             expandedHeight: imgHeight - 25,
           ),
           SliverToBoxAdapter(

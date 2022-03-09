@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/core/cover_config.dart';
 import '/l_presentation/app_theme.dart';
 import '/l_presentation/widgets/cover_image.dart';
 import '/l_presentation/widgets/form/to_collection_button.dart';
@@ -36,7 +37,7 @@ class PlayerBottomSheet extends StatelessWidget {
                   height: 100,
                   width: 100,
                   child: CoverImage(
-                    'https://api.napster.com/imageserver/v2/albums/${track.albumId}/images/170x170.jpg',
+                    CoversConfig.path(Cover.albumLg, track.albumId),
                   ),
                 ),
                 Expanded(

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import '/core/cover_config.dart';
 import '/routing/app_router.dart';
 import '/l_presentation/widgets/cover_image.dart';
 import '/l_presentation/app_theme.dart';
@@ -29,8 +30,7 @@ class ArtistCard extends StatelessWidget {
             children: [
               Expanded(
                 child: CoverImage(
-                  // ToDo: refuck hardcode
-                  'https://api.napster.com/imageserver/v2/artists/${artist.id}/images/150x100.jpg',
+                  CoversConfig.path(Cover.artistSm, artist.id),
                 ),
               ),
               Container(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/core/cover_config.dart';
 import '/l_presentation/widgets/cover_image.dart';
 import '/l_presentation/widgets/player_bottom_sheet.dart';
 import '/l_presentation/app_theme.dart';
@@ -45,8 +46,7 @@ class TrackCard extends StatelessWidget {
               height: 70,
               width: 70,
               child: CoverImage(
-                // ToDo:
-                'https://api.napster.com/imageserver/v2/albums/${track.albumId}/images/70x70.jpg',
+                CoversConfig.path(Cover.albumSm, track.albumId),
                 errorChild: const Center(
                   child: Icon(Icons.music_note_outlined),
                 ),

@@ -73,9 +73,9 @@ class AuthRepository implements IAuthRepository {
       await firebaseAuth.signOut();
     } catch (e) {
       if (e is FirebaseAuthException) {
-        throw AuthException(error: e);
+        rethrow;
       } else {
-        throw Exception(e);
+        throw AuthException();
       }
     }
   }
