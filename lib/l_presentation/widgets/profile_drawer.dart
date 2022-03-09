@@ -13,8 +13,8 @@ class ProfileDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
-          SizedBox(height: 50),
-          CircleAvatar(
+          const SizedBox(height: 50),
+          const CircleAvatar(
             child: Icon(
               Icons.person_rounded,
               color: AppTheme.colorBrightWhite,
@@ -23,20 +23,20 @@ class ProfileDrawer extends StatelessWidget {
             radius: 50,
             backgroundColor: AppTheme.colorFirm,
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             authBloc.user.email ?? '',
-            style: TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16),
           ),
-          Spacer(),
+          const Spacer(),
           MaterialButton(
             onPressed: () {
               authBloc.logout();
             },
             color: AppTheme.colorGreyMiddle,
-            child: Text('Выход'),
+            child: const Text('Выход'),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
         ],
       ),
     );

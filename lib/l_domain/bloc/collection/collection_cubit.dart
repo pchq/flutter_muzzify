@@ -13,32 +13,32 @@ class CollectionCubit extends Cubit<CollectionState> {
 
   CollectionCubit({
     required this.collectionRepository,
-  }) : super(CollectionState.initial());
+  }) : super(const CollectionState.initial());
 
   Future<void> add(Track track) async {
-    emit(CollectionState.loading());
+    emit(const CollectionState.loading());
 
     try {
       await collectionRepository.add(track);
-      emit(CollectionState.success(true));
+      emit(const CollectionState.success(true));
     } catch (e) {
       emit(CollectionState.error(ErrorObject(e)));
     }
   }
 
   Future<void> remove(Track track) async {
-    emit(CollectionState.loading());
+    emit(const CollectionState.loading());
 
     try {
       await collectionRepository.remove(track);
-      emit(CollectionState.success(false));
+      emit(const CollectionState.success(false));
     } catch (e) {
       emit(CollectionState.error(ErrorObject(e)));
     }
   }
 
   Future<void> checkTrack(Track track) async {
-    emit(CollectionState.loading());
+    emit(const CollectionState.loading());
 
     try {
       final inCollection = await collectionRepository.checkTrack(track);

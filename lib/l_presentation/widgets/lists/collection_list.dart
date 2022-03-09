@@ -20,7 +20,7 @@ class ColletionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (_, index) {
         Track track = list[index];
         return Dismissible(
@@ -49,7 +49,7 @@ class ColletionList extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
-        title: Text(
+        title: const Text(
           'Вы уверены, что хотите удалить трек?',
           textAlign: TextAlign.center,
         ),

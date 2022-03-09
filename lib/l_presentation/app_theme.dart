@@ -25,7 +25,7 @@ class AppTheme {
     ),
     appBarTheme: _baseTheme.appBarTheme.copyWith(
       backgroundColor: const Color(0xFF181818),
-      toolbarTextStyle: TextStyle(
+      toolbarTextStyle: const TextStyle(
         color: AppTheme.colorBrightWhite,
       ),
     ),

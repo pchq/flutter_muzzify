@@ -21,7 +21,7 @@ class ArtistPage extends StatelessWidget {
         slivers: [
           SliverAppBar(
             leading: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.chevron_left,
                 color: AppTheme.colorFirm,
                 size: 48,
@@ -69,7 +69,7 @@ class ArtistPage extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Html(
                 data: artist.bio,
                 style: {

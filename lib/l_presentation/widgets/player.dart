@@ -40,19 +40,19 @@ class _PlayerState extends State<Player> {
             valueListenable: _progressManager.buttonNotifier,
             builder: (_, value, __) {
               return Container(
-                  margin: EdgeInsets.only(right: 20, bottom: 10),
+                  margin: const EdgeInsets.only(right: 20, bottom: 10),
                   width: 30.0,
                   height: 30.0,
                   child: (() {
                     switch (value) {
                       case ButtonState.loading:
-                        return CircularProgressIndicator(
+                        return const CircularProgressIndicator(
                           strokeWidth: 2,
                         );
                       case ButtonState.paused:
                         return IconButton(
-                          padding: EdgeInsets.all(0),
-                          icon: Icon(
+                          padding: const EdgeInsets.all(0),
+                          icon: const Icon(
                             Icons.play_circle_outline,
                             color: AppTheme.colorFirm,
                           ),
@@ -61,8 +61,8 @@ class _PlayerState extends State<Player> {
                         );
                       case ButtonState.playing:
                         return IconButton(
-                          padding: EdgeInsets.all(0),
-                          icon: Icon(
+                          padding: const EdgeInsets.all(0),
+                          icon: const Icon(
                             Icons.pause_circle_outline,
                             color: AppTheme.colorFirm,
                           ),
@@ -83,7 +83,7 @@ class _PlayerState extends State<Player> {
                   progressBarColor: AppTheme.colorFirm,
                   thumbColor: AppTheme.colorFirm,
                   thumbGlowColor: AppTheme.colorGreyMiddle,
-                  timeLabelTextStyle: TextStyle(
+                  timeLabelTextStyle: const TextStyle(
                     color: AppTheme.colorGreyMiddle,
                     fontSize: 10,
                   ),

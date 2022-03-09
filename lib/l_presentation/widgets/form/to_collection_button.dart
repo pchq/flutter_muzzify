@@ -64,9 +64,9 @@ class _ToCollectionButtonState extends State<ToCollectionButton> {
             color: AppTheme.colorFirm,
             height: 30,
             child: AnimatedSwitcher(
-              duration: Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 200),
               child: _isLoading
-                  ? SizedBox(
+                  ? const SizedBox(
                       key: Key('loader'),
                       height: 20,
                       width: 20,
@@ -78,7 +78,7 @@ class _ToCollectionButtonState extends State<ToCollectionButton> {
                   : Text(
                       _inCollection ? 'Удалить из коллекции' : 'В коллекцию',
                       key: Key('$_inCollection'),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                       ),
                     ),
@@ -87,14 +87,14 @@ class _ToCollectionButtonState extends State<ToCollectionButton> {
         } else {
           return MaterialButton(
             onPressed: () {
-              context.router.push(AuthRoute());
+              context.router.push(const AuthRoute());
             },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
             ),
             color: AppTheme.colorGreyMiddle,
             height: 30,
-            child: Text(
+            child: const Text(
               'В коллекцию',
               style: TextStyle(
                 fontSize: 12,

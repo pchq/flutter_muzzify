@@ -31,10 +31,10 @@ class _CollectionPageState extends State<CollectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: ProfileDrawer(),
+      drawer: const ProfileDrawer(),
       drawerEnableOpenDragGesture: false,
       appBar: AppBar(
-        title: Text('Коллекция'),
+        title: const Text('Коллекция'),
         automaticallyImplyLeading: false,
         leading: Builder(builder: (context) {
           return IconButton(
@@ -51,7 +51,7 @@ class _CollectionPageState extends State<CollectionPage> {
               transform: Matrix4.rotationX(
                 _sort == Sort.newFirst ? 0 : pi,
               ),
-              child: Icon(Icons.sort),
+              child: const Icon(Icons.sort),
             ),
             onPressed: () {
               setState(() {
@@ -73,7 +73,7 @@ class _CollectionPageState extends State<CollectionPage> {
           if (snapshot.hasError) {
             ScaffoldMessenger.of(context)
               ..removeCurrentSnackBar()
-              ..showSnackBar(SnackBar(content: Text('Ошибка')));
+              ..showSnackBar(const SnackBar(content: Text('Ошибка')));
           }
           return SingleChildScrollView(
             child: Column(
@@ -84,7 +84,7 @@ class _CollectionPageState extends State<CollectionPage> {
                   ColletionList(
                     list: snapshot.data ?? [],
                   ),
-                if (snapshot.connectionState == ConnectionState.waiting) LoadingIndicator(),
+                if (snapshot.connectionState == ConnectionState.waiting) const LoadingIndicator(),
               ],
             ),
           );

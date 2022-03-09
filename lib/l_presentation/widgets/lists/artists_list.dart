@@ -14,7 +14,7 @@ class ArtistsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       crossAxisCount: 2,
       padding: const EdgeInsets.all(10.0),

@@ -14,26 +14,26 @@ class SearchField extends StatelessWidget {
     return Container(
       color: AppTheme.colorDeepBlack,
       height: 80,
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Container(
         clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
           color: AppTheme.colorBlackMatte,
         ),
         child: Center(
           child: TextFormField(
             controller: controller,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 17,
             ),
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'Поиск',
               border: InputBorder.none,
               contentPadding: EdgeInsets.zero,
               isDense: true,
               icon: Padding(
-                padding: const EdgeInsets.only(left: 20),
+                padding: EdgeInsets.only(left: 20),
                 child: Icon(
                   Icons.search,
                   size: 24,

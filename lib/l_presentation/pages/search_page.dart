@@ -36,7 +36,7 @@ class _SearchPageState extends State<SearchPage> {
     _searchCtrl.addListener(() async {
       if (_curQuery != _searchCtrl.text) {
         _curQuery = _searchCtrl.text;
-        await Future.delayed(Duration(milliseconds: 1000));
+        await Future.delayed(const Duration(milliseconds: 1000));
         _loadArtists();
       }
     });
@@ -83,9 +83,6 @@ class _SearchPageState extends State<SearchPage> {
           },
           error: (error) {
             _isLoading = false;
-
-            // ToDo
-            print('=== ArtistCubit UI error: $error');
           },
         );
 
@@ -106,10 +103,10 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                 if (_notFound && !_isLoading)
                   Container(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Text('Ничего не найдено'),
+                    padding: const EdgeInsets.symmetric(vertical: 20),
+                    child: const Text('Ничего не найдено'),
                   ),
-                if (_isLoading) LoadingIndicator(),
+                if (_isLoading) const LoadingIndicator(),
               ],
             ),
           ),

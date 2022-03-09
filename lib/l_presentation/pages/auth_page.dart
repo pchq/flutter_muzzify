@@ -51,7 +51,7 @@ class _AuthPageState extends State<AuthPage> {
               if (router.canNavigateBack && router.current.parent?.name != 'CollectionTab') {
                 router.navigateBack();
               } else {
-                router.replace(CollectionRoute());
+                router.replace(const CollectionRoute());
               }
             }
           },
@@ -76,7 +76,7 @@ class _AuthPageState extends State<AuthPage> {
                   'Необходимо авторизоваться',
                   style: TextStyle(fontSize: 16),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 InputField(
                   controller: _emailFieldController,
                   enabled: !_isLoading,
@@ -88,9 +88,9 @@ class _AuthPageState extends State<AuthPage> {
                   label: 'Пароль',
                   isPasswd: true,
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 _isLoading
-                    ? LoadingIndicator()
+                    ? const LoadingIndicator()
                     : ElevatedButton(
                         onPressed: () {
                           _authBloc.login(

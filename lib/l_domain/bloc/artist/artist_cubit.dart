@@ -21,7 +21,7 @@ class ArtistCubit extends Cubit<ArtistState> {
     if (state is _Loading) return;
 
     try {
-      emit(ArtistState.loading());
+      emit(const ArtistState.loading());
       final artists = await artistRepository.loadTop(page: _topArtistsPage);
       if (artists.isNotEmpty) {
         _topArtistsPage++;
@@ -50,7 +50,7 @@ class ArtistCubit extends Cubit<ArtistState> {
     _searchQuery = query;
 
     try {
-      emit(ArtistState.loading());
+      emit(const ArtistState.loading());
       final artists = await artistRepository.search(_searchQuery, page: _searchPage);
       if (artists.isNotEmpty) {
         _searchPage++;

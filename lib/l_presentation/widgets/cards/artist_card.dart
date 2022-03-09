@@ -15,8 +15,8 @@ class ArtistCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(const Radius.circular(10.0)),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
       ),
       clipBehavior: Clip.antiAlias,
       child: GestureDetector(
@@ -35,7 +35,7 @@ class ArtistCard extends StatelessWidget {
               ),
               Container(
                 height: 50,
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                 child: Center(
                   child: Text(
                     artist.name,

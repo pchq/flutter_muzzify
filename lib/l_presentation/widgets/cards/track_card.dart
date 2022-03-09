@@ -33,9 +33,9 @@ class TrackCard extends StatelessWidget {
         );
       },
       child: Card(
-        margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(const Radius.circular(10.0)),
+        margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
         ),
         clipBehavior: Clip.antiAlias,
         color: background,
@@ -47,7 +47,7 @@ class TrackCard extends StatelessWidget {
               child: CoverImage(
                 // ToDo:
                 'https://api.napster.com/imageserver/v2/albums/${track.albumId}/images/70x70.jpg',
-                errorChild: Center(
+                errorChild: const Center(
                   child: Icon(Icons.music_note_outlined),
                 ),
               ),
@@ -61,19 +61,19 @@ class TrackCard extends StatelessWidget {
                     if (showArtistName)
                       Text(
                         track.artistName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 10,
                         ),
                       ),
                     Text(
                       track.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 15,
                       ),
                     ),
                     Text(
                       'Album: ${track.albumName}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 10,
                         color: AppTheme.colorGreyMiddle,
                       ),
@@ -82,7 +82,7 @@ class TrackCard extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.all(10),
               child: Icon(
                 Icons.play_circle_outline,

@@ -33,7 +33,16 @@ class _TracksListState extends State<TracksList> {
   Widget build(BuildContext context) {
     List<Track> tracks = [];
 
-    return BlocBuilder<TrackCubit, TrackState>(
+    return BlocConsumer<TrackCubit, TrackState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          error: (error) {
+            ScaffoldMessenger.of(context)
+              ..removeCurrentSnackBar()
+              ..showSnackBar(SnackBar(content: Text(error.message)));
+          },
+        );
+      },
       builder: (context, state) {
         state.whenOrNull(
           loading: () {
@@ -46,9 +55,6 @@ class _TracksListState extends State<TracksList> {
           },
           error: (error) {
             _isLoading = false;
-
-            // ToDo
-            print('=== TrackList Cubit UI error: $error');
           },
         );
         return Column(
@@ -56,14 +62,14 @@ class _TracksListState extends State<TracksList> {
           children: [
             ListView.builder(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (_, index) => TrackCard(tracks[index]),
               itemCount: tracks.length,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             if (!_allLoaded)
               AnimatedSwitcher(
-                duration: Duration(milliseconds: 100),
+                duration: const Duration(milliseconds: 100),
                 transitionBuilder: (Widget child, Animation<double> animation) {
                   return Container(
                     clipBehavior: Clip.antiAlias,
@@ -78,12 +84,12 @@ class _TracksListState extends State<TracksList> {
                   );
                 },
                 child: _isLoading
-                    ? LoadingIndicator()
+                    ? const LoadingIndicator()
                     : MaterialButton(
                         onPressed: () {
                           _bloc.load(widget.artistId);
                         },
-                        child: Text(
+                        child: const Text(
                           'Загрузить еще',
                           style: TextStyle(
                             fontSize: 15,

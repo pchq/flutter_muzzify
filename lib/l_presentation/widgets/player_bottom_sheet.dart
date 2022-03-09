@@ -29,10 +29,10 @@ class PlayerBottomSheet extends StatelessWidget {
               children: [
                 Container(
                   clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  margin: EdgeInsets.only(right: 15),
+                  margin: const EdgeInsets.only(right: 15),
                   height: 100,
                   width: 100,
                   child: CoverImage(
@@ -46,20 +46,20 @@ class PlayerBottomSheet extends StatelessWidget {
                     children: [
                       Text(
                         track.albumName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 10,
                           color: AppTheme.colorGreyMiddle,
                         ),
                       ),
                       Text(
                         track.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 15,
                         ),
                       ),
                       if (showToCollectionButton)
                         Container(
-                          margin: EdgeInsets.only(top: 20),
+                          margin: const EdgeInsets.only(top: 20),
                           child: ToCollectionButton(track: track),
                         ),
                     ],

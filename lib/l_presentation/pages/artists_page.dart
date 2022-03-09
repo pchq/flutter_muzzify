@@ -71,7 +71,7 @@ class _ArtistsPageState extends State<ArtistsPage> {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('Популярные исполнители'),
+            title: const Text('Популярные исполнители'),
           ),
           body: SingleChildScrollView(
             controller: _scrollCtrl,
@@ -82,7 +82,7 @@ class _ArtistsPageState extends State<ArtistsPage> {
                   ArtistsList(
                     list: artists,
                   ),
-                if (_isLoading) LoadingIndicator(),
+                if (_isLoading) const LoadingIndicator(),
               ],
             ),
           ),

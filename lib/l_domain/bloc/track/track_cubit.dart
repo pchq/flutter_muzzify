@@ -11,7 +11,7 @@ class TrackCubit extends Cubit<TrackState> {
   final ITrackRepository trackRepository;
   TrackCubit({
     required this.trackRepository,
-  }) : super(TrackState.initial());
+  }) : super(const TrackState.initial());
 
   int _page = 0;
   bool _loadedAll = false;
@@ -25,7 +25,7 @@ class TrackCubit extends Cubit<TrackState> {
       _artistTracks.clear();
     }
     try {
-      emit(TrackState.loading());
+      emit(const TrackState.loading());
       final tracks = await trackRepository.loadByArtist(artistId, page: _page);
       _artistTracks.addAll(tracks);
       if (tracks.isNotEmpty) {

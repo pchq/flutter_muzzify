@@ -16,12 +16,12 @@ class AlertButton extends StatelessWidget {
       onPressed: onPressed,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30.0),
-        side: BorderSide(color: AppTheme.colorFirm),
+        side: const BorderSide(color: AppTheme.colorFirm),
       ),
       minWidth: 110,
       child: Text(
         label,
-        style: TextStyle(
+        style: const TextStyle(
           color: AppTheme.colorBrightWhite,
           fontSize: 12,
         ),
