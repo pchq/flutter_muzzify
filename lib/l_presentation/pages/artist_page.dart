@@ -60,8 +60,8 @@ class ArtistPage extends StatelessWidget {
                 ],
               ),
             ),
-            // ToDo: wtf 25?
-            expandedHeight: imgHeight - 25,
+            // viewPadding.top - высота status bar
+            expandedHeight: imgHeight - MediaQuery.of(context).viewPadding.top,
           ),
           SliverToBoxAdapter(
             child: Padding(

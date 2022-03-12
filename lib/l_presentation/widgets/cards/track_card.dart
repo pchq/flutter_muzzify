@@ -31,6 +31,7 @@ class TrackCard extends StatelessWidget {
               showToCollectionButton: canAddToCollection,
             );
           },
+          useRootNavigator: true,
         );
       },
       child: Card(

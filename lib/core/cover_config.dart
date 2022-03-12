@@ -6,6 +6,7 @@ class CoversConfig {
     switch (cover) {
       case Cover.artistSm:
         return '${_endpoint}artists/$id/images/150x100.jpg';
+
       case Cover.artistLg:
         return '${_endpoint}artists/$id/images/633x422.jpg';
 
@@ -18,4 +19,16 @@ class CoversConfig {
   }
 }
 
-enum Cover { artistSm, artistLg, albumSm, albumLg }
+enum Cover {
+  /// маленькая картинка артиста
+  artistSm,
+
+  /// большая картинка артиста
+  artistLg,
+
+  /// маленькая картинка альбома
+  albumSm,
+
+  /// большая картинка альбома
+  albumLg,
+}

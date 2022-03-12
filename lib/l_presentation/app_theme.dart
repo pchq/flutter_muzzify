@@ -18,6 +18,9 @@ class AppTheme {
     ),
     backgroundColor: AppTheme.colorBlackMatte,
     scaffoldBackgroundColor: AppTheme.colorBlackMatte,
+    snackBarTheme: const SnackBarThemeData(
+      backgroundColor: AppTheme.colorFirm,
+    ),
     bottomNavigationBarTheme: _baseTheme.bottomNavigationBarTheme.copyWith(
       selectedItemColor: AppTheme.colorFirm,
       unselectedItemColor: AppTheme.colorBrightWhite,

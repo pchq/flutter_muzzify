@@ -21,7 +21,6 @@ class _BioSerialiser implements JsonConverter<String?, dynamic> {
 
   @override
   String fromJson(json) {
-    // final exp = RegExp(r'<[^>]*>', multiLine: true, caseSensitive: true);
     switch (json.runtimeType) {
       case String:
         return json;

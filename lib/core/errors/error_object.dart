@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'exceptions.dart';
@@ -9,6 +11,7 @@ class ErrorObject {
   ErrorObject(
     this.exception,
   ) {
+    log('== exception: $exception');
     if (exception is ServerException) {
       message = 'Ошибка сервера';
     } else if (exception is DataParsingException) {
